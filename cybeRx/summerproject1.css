@@ -1,0 +1,162 @@
+body {margin:0;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Montserrat Alternates', sans-serif;}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+li {
+  float: right;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 50px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+	 background-size: 100% 2px;
+  	transition: 0.25s;
+	border-bottom: 4px solid #DCDCDC;
+  	color: #DCDCDC;
+}
+
+ li a:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #000;
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+a:hover:before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+.active {
+  background-color: #4CAF50;
+}
+
+#logo{
+  height: auto; 
+  width: auto; 
+  max-width: 100px; 
+  max-height: 100px;
+  float: left;
+}
+
+#words{
+	font-family: 'Montserrat', sans-serif;
+font-family: 'Montserrat Alternates', sans-serif;
+font-family: 'Expletus Sans', cursive;
+font-family: 'Audiowide', cursive;
+font-size: 20px;
+display: inline-block;
+margin: auto;
+}
+
+#words2{
+	font-family: 'Montserrat', sans-serif;
+font-family: 'Montserrat Alternates', sans-serif;
+font-family: 'Expletus Sans', cursive;
+font-family: 'Audiowide', cursive;
+font-size: 65px;
+text-align: center;
+color: white;
+}
+
+#words3{
+	font-family: 'Montserrat', sans-serif;
+font-family: 'Montserrat Alternates', sans-serif;
+font-family: 'Expletus Sans', cursive;
+font-family: 'Audiowide', cursive;
+font-size: 20px;
+text-align: center;
+color: white;
+}
+
+
+.bgimage{
+	background: url("https://media.wired.com/photos/5b7350b5b26dad784bab571a/master/pass/Robot%20interactions%20with%20kids-peer%20pressure.jpg");
+}
+
+.container{
+	width: 500px;
+	height: 450px;
+	text-align: center;
+	margin: 0 auto;
+	background-color: rgba(44, 62, 80,0.75);
+	margin-top: -8px;
+	border-radius: 15px;
+}
+ 
+input[type="text"],input[type="password"]{
+	margin-top: 30px;
+	height: 45px;
+	width: 300px;
+	font-size: 18px;
+	margin-bottom: 20px;
+	background-color: #fff;
+	padding-left: 15px;
+}
+
+input[type=button]{
+	font-family: 'Montserrat', sans-serif;
+font-family: 'Montserrat Alternates', sans-serif;
+}
+ 
+.form-input::before{
+	/*content: "\f007";*/
+
+	font-family: "FontAwesome";
+	padding-left: 03px;
+	padding-top: 40px;
+	position: absolute;
+	font-size: 35px;
+	color: #2980b9; 
+}
+ 
+
+.btn-login{
+	padding: 15px 25px;
+	border: none;
+	background-color: #27ae60;
+	color: #fff;
+}
+
+::-webkit-input-placeholder {
+   font-style: italic;
+}
+
+#dont{
+	color: white;
+}
+
+.btn-signup{
+	padding: 15px 30px;
+	border: none;
+	background-color: #d6204e;
+	color: #fff;
+}
+
+

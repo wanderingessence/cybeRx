@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CybeRx: Your personalized health assistant</title>
+    <link rel = "stylesheet" type = "text/css" href = "summerproject1.css"> 
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Montserrat+Alternates&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Audiowide|Montserrat|Montserrat+Alternates&display=swap" rel="stylesheet">
+   <link rel="icon" href="Final Logo.jpg">
+   <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+   <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+   <script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyBPvSqm_MaQhjpK7z0SUbn2ZbxD12MI-9k",
+    authDomain: "summerproject1-d1d7c.firebaseapp.com",
+    databaseURL: "https://summerproject1-d1d7c.firebaseio.com",
+    projectId: "summerproject1-d1d7c",
+    storageBucket: "",
+    messagingSenderId: "634559623742",
+    appId: "1:634559623742:web:882b27c70b1247c2"
+  };
+  firebase.initializeApp(firebaseConfig);
+  var database = firebase.database();
+
+  var ref = database.ref('User').orderByKey();
+  var found = false;
+  function login(){
+    ref.once("value")
+  .then(function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+      var key = childSnapshot.key;
+      var childData = childSnapshot.val();
+      var username = childData.username;
+      var password = atob(childData.password);
+      var passwordy= document.getElementById("password").value;
+    var usernamey = document.getElementById("username").value;
+        if(passwordy == password && usernamey == username){
+            alert("User authenticated :D");
+            found = true;
+            return;
+        }
+  });
+    if(!found){
+        alert("Incorrect username/password combination");
+        return;
+
+    }
+});
+  }
+  
+  
+  
+  function signup(){
+    var ref = database.ref('User');
+    var password= document.getElementById("password").value;
+    var username = document.getElementById("username").value;
+    if(username.length < 5){
+        alert("For Security Reasons, please make your username has at least 5 characters.")
+        return;
+    }
+    if(password.length < 8){
+        alert("For Security Reasons, please make your password has at least 8 characters.");
+        return;
+    }
+
+     var data = {
+    username: username,
+    password: btoa(password)
+  }
+
+  var found = false;
+
+     ref.once("value")
+    .then(function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+      var key = childSnapshot.key;
+      var childData = childSnapshot.val();
+      var username = childData.username;
+    var usernamey = document.getElementById("username").value;
+        if(usernamey == username){
+            alert("This user already exists.");
+            found = true;
+        }
+  });
+
+    if(found == false){
+        ref.push(data);
+        alert("Sign up Successful! :)");
+    }
+        
+
+});
+
+   
+  }
+
+  
+</script>
+
+</head>
+<body>
+   
+<ul>
+  <li><a class="about" href="#home">About</a></li>
+  <li><a href="#sign">Chat</a></li>
+  <li><a href="#contact">Login</a></li>
+  <div id = "words"><li><a href="#contact" id="logo2">CybeRx</a></li></div>
+  <li id = "logo"><img id = "logo" src = "Logo.png"></li>
+</ul>
+
+
+<div id = "nonsense" style="padding:20px;margin-top:30px;background:url(unblurred.png);height:100%; width: screen; background-size: cover;">
+  <h1>Fixed Top Navigation Bar</h1>
+  <h2 id = "words2">CybeRx</h2>
+  <h4 id = "words3">Your Personalized Medical Assistant</h4>
+  <div class = "container">
+      <form id = "auth">
+        <div class="form-input">
+        <input type="text" name="text" placeholder="Username" id = "username"/>  
+        </div>
+        <div class="form-input">
+        <input type="password" name="password" placeholder="Password" id = "password"/>
+        </div>
+        <div class = "button"><input type="button" id = "submit" value="Login" class="btn-login" onclick="login()" /></div>
+        <div id = "dont"><br><br><i>Don't have an account?</i></div>
+        <br>
+        <div class = "button"><input type="button" value="Sign Up" class="btn-signup" onclick = "signup()" /></div>
+        </form>
+  </div>
+
+  
+</div>
+
+</body>
+</html>
