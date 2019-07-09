@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CybeRx: Chat</title>
+	<link rel = "stylesheet" type = "text/css" href = "summerproject1.css"> 
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Montserrat+Alternates&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Audiowide|Montserrat|Montserrat+Alternates&display=swap" rel="stylesheet">
+   <link rel="icon" href="Final Logo.jpg">
+
+
+
+   <script>
+   	know = {
+                "hello" : "hi",
+                "how are you?" : "good",
+                "ok" : ":)",
+                "who are you?" : "I'm CybeRx, your own personal health assistant. How may I help you today?",
+                "who am I?" : "You are whoever you want to be."
+            };
+
+            document.getElementById("chatLog2").innerHTML += "Hi, I am CybeRx, your personal health assistant. How may I help you today? <br>"
+
+            function talk() {
+
+                var user = document.getElementById("userBox").value;
+                document.getElementById("userBox").value = "";
+                document.getElementById("chatLog2").innerHTML += "<br>" +  user+"<br>";
+                if (user in know) {
+                    document.getElementById("chatLog2").innerHTML += know[user]+"<br>";
+                } else {
+                    document.getElementById("chatLog2").innerHTML += "I don't comprehend what you are putting. Please try asking me something else.<br>";
+                }
+            } 
+   </script>
+
+
+
+</head>
+<body>
+	<ul>
+  <li><a href="summerproject1.html">Log Out</a></li>
+  <li><a href="chat.html">Chat</a></li>
+  <li><a href="summerproject1.html">View my Stats</a></li>
+  <div id = "words"><li><a href="summerproject1.html" id="logo2">CybeRx</a></li></div>
+  <li id = "logo"><img id = "logo" src = "Logo.png"></li>
+</ul>
+
+<div id = "nonsense" style="padding:20px;margin-top:30px;background:url(unblurred.png);height:100%; width: screen; background-size: cover;">
+
+	<div id="chatLog">Chat<br>
+    	<div id = "chatLog2"></div>
+	</div>
+<div class = "response"><input id="userBox" type="text" onkeydown="if (event.keyCode == 13) {talk()}"></div>
+
+</div>
+
+</body>
+</html>

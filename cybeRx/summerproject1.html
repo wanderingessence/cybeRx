@@ -37,6 +37,7 @@
         if(passwordy == password && usernamey == username){
             alert("User authenticated :D");
             found = true;
+            document.location.href = "chat.html";
             return;
         }
   });
@@ -85,7 +86,7 @@
 
     if(found == false){
         ref.push(data);
-        alert("Sign up Successful! :)");
+        alert("Sign up Successful. Please Log in.");
     }
         
 
@@ -101,9 +102,9 @@
 <body>
    
 <ul>
-  <li><a class="about" href="#home">About</a></li>
-  <li><a href="#sign">Chat</a></li>
-  <li><a href="#contact">Login</a></li>
+  <li><a href="about.html">About</a></li>
+  <li><a href="chat.html">Chat</a></li>
+  <li><a href="summerproject1.html">Login</a></li>
   <div id = "words"><li><a href="#contact" id="logo2">CybeRx</a></li></div>
   <li id = "logo"><img id = "logo" src = "Logo.png"></li>
 </ul>
