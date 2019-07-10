@@ -34,6 +34,10 @@
 		return final;
 	}
 
+	function convertNum(str){
+		
+	}
+
    			var type11 = false;
 
             function talk() {
@@ -59,12 +63,25 @@
                 	var firstName = separate[0];
                 	var lastName = separate[1];
                     var info = "";
+                    var other = "";
+                    var address = "";
+                    var phoneNumber = "";
                     $.getJSON("https://api.betterdoctor.com/2016-03-01/doctors?first_name=" + firstName + "&last_name=" + lastName + "&skip=0&limit=10&user_key=afbd778310f54f209917a0810b0f8aed",
 							function(data){
 							console.log(data);
 							console.log(data.data[0].profile.bio);
-							info = data.data[0].profile.bio;
-							document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(info) + "</div><br><br><br>";
+							info += "Dr." +  data.data[0].profile.first_name + " " + data.data[0].profile.last_name + ", " + data.data[0].profile.title + "<br>" + data.data[0].specialties[0].name + "<br><br>";
+
+							var datas = data.data[0];
+
+							if(datas.practices[0] != null){
+								address = "<br>" + data.data[0].practices[0].visit_address.street + "<br>" + data.data[0].practices[0].visit_address.city + ", " + data.data[0].practices[0].visit_address.state + " " + data.data[0].practices[0].visit_address.zip + "<br>";
+								phoneNumber = "<br>" + data.data[0].practices[0].phones[0].number;
+							}
+							
+							info += address;
+							info += phoneNumber;
+							document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + info + "</div><br><br>";
                     		userChat.push(user);
                     		botChat.push(characterBreak(info));
 					});
