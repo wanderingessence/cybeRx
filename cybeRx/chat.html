@@ -18,7 +18,6 @@
    		var final = "";
    		var words = 0;
    		for (var i = 0; i < str.length; i++) {
-  			var wo
   			if(str.charAt(i) == " "){
   				words++;
   			} if(words == 6){
@@ -34,8 +33,18 @@
 		return final;
 	}
 
-	function convertNum(str){
-		
+	function parsePhone(str){
+		var number = "";
+		for(var i = 0; i < str.length; i++){
+			if(i == 2 || i == 5){
+				number += str.charAt(i) + "-";
+			} else {
+				number += str.charAt(i);
+			}
+		}
+
+		return number;
+
 	}
 
    			var type11 = false;
@@ -76,11 +85,11 @@
 
 							if(datas.practices[0] != null){
 								address = "<br>" + data.data[0].practices[0].visit_address.street + "<br>" + data.data[0].practices[0].visit_address.city + ", " + data.data[0].practices[0].visit_address.state + " " + data.data[0].practices[0].visit_address.zip + "<br>";
-								phoneNumber = "<br>" + data.data[0].practices[0].phones[0].number;
+								phoneNumber =  data.data[0].practices[0].phones[0].number;
 							}
 							
 							info += address;
-							info += phoneNumber;
+							info += "<br>"  + parsePhone(phoneNumber);
 							document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + info + "</div><br><br>";
                     		userChat.push(user);
                     		botChat.push(characterBreak(info));
