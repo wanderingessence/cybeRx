@@ -10,7 +10,12 @@
 
 
    <script>
-   	know = {};
+   	know = {
+   		"hi": "Hi There!",
+   		"sup": "Nothing much, how about you?",
+   		"good": "Happy to hear that you are doing well :)",
+   		"I don't feel well": "What seems to be the problem you have been experiencing?"
+   	};
 
    	userChat = [];
    	botChat = [];
@@ -19,13 +24,13 @@
 
                 var user = document.getElementById("userBox").value;
                 document.getElementById("userBox").value = "";
-                document.getElementById("youLog").innerHTML += user+"<br>";
+                document.getElementById("chat").innerHTML += "<div id = \"youLog\" class = \"chatting\">" + user + "</div><br>";
                 if (user in know) {
-                    document.getElementById("botLog").innerHTML += know[user]+"<br>";
+                    document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + know[user] + "</div><br>";
                     userChat.push(user);
                     botChat.push(know[user]);
                 } else {
-                    document.getElementById("botLog").innerHTML += "What?<br>";
+                    document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + "What? <br>" + "</div><br>";
                     userChat.push(user);
                     botChat.push("What? <br>");
                 }
@@ -37,8 +42,8 @@
 
 
 
-</head>
 <body>
+</head>
 	<ul>
   <li><a href="summerproject1.html">Log Out</a></li>
   <li><a href="chat.html">Chat</a></li>
@@ -51,11 +56,12 @@
 
 	<div id="chatLog">Chat<br>
 		<div id = "chat">
-    	<div id = "youLog" class = "chatting"></div>
-    	<div id = "botLog" class = "chatting"></div>
+			<div id = "botLog" class = "chatting">Hi, I'm DocBot, your personal healthcare assistant. How may I help you today?</div><br>
+		</div>
     </div>
+    <div class = "response"><input id="userBox" type="text" onkeydown="if (event.keyCode == 13) {talk()}"></div>
 	</div>
-<div class = "response"><input id="userBox" type="text" onkeydown="if (event.keyCode == 13) {talk()}"></div>
+
 
 </div>
 
