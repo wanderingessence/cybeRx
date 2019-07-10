@@ -11,6 +11,7 @@ ul {
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 100;
 }
 
 li {
@@ -174,6 +175,8 @@ font-family: 'Montserrat Alternates', sans-serif;
 font-family: 'Expletus Sans', cursive;
 font-family: 'Audiowide', cursive;
 color: white;
+opacity: 0.9;
+z-index: 2;
 }
 
 #userBox{
@@ -187,23 +190,54 @@ color: white;
   margin: auto;
   display: block;
   background-color: white;
+  z-index: -5;
 }
 
 .response{
   position: relative;
  bottom: 30px;
  top: 15px;
+ margin-top: 65px;
+ margin-left: 0px;
+ margin-right: 0px;
 }
 
-#chatLog2{
+.chatting{
   background-color:   #DCDCDC;
   color: black;
   font-size: 14px;
   font-family: 'Montserrat', sans-serif;
 font-family: 'Montserrat Alternates', sans-serif;
 border-radius: 12px;
+z-index: -5;
 }
 
 
 
+.chatting{
+  color: black;
+  background-color: white;
+  font-size: 14px;
+  box-shadow: 8px 4px 8px 4px #E8E8E8;
+  margin-top: 10px;
+}
+
+
+#youLog{
+  background-color:#43DD9B;
+  float: right;
+  margin-right: 50px;
+  color: white;
+}
+
+#botLog{
+  background-color: white;
+  float: left;
+  margin-left: 50px;
+}
+
+#chat{
+  overflow-y: auto;
+  background-color: #F6FAFD;
+}
 

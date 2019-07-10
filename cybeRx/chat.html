@@ -10,26 +10,28 @@
 
 
    <script>
-   	know = {
-                "hello" : "hi",
-                "how are you?" : "good",
-                "ok" : ":)",
-                "who are you?" : "I'm CybeRx, your own personal health assistant. How may I help you today?",
-                "who am I?" : "You are whoever you want to be."
-            };
+   	know = {};
 
-            document.getElementById("chatLog2").innerHTML += "Hi, I am CybeRx, your personal health assistant. How may I help you today? <br>"
+   	userChat = [];
+   	botChat = [];
 
             function talk() {
 
                 var user = document.getElementById("userBox").value;
                 document.getElementById("userBox").value = "";
-                document.getElementById("chatLog2").innerHTML += "<br>" +  user+"<br>";
+                document.getElementById("youLog").innerHTML += user+"<br>";
                 if (user in know) {
-                    document.getElementById("chatLog2").innerHTML += know[user]+"<br>";
+                    document.getElementById("botLog").innerHTML += know[user]+"<br>";
+                    userChat.push(user);
+                    botChat.push(know[user]);
                 } else {
-                    document.getElementById("chatLog2").innerHTML += "I don't comprehend what you are putting. Please try asking me something else.<br>";
+                    document.getElementById("botLog").innerHTML += "What?<br>";
+                    userChat.push(user);
+                    botChat.push("What? <br>");
                 }
+
+                console.log(userChat);
+                console.log(botChat);
             } 
    </script>
 
@@ -48,7 +50,10 @@
 <div id = "nonsense" style="padding:20px;margin-top:30px;background:url(unblurred.png);height:100%; width: screen; background-size: cover;">
 
 	<div id="chatLog">Chat<br>
-    	<div id = "chatLog2"></div>
+		<div id = "chat">
+    	<div id = "youLog" class = "chatting"></div>
+    	<div id = "botLog" class = "chatting"></div>
+    </div>
 	</div>
 <div class = "response"><input id="userBox" type="text" onkeydown="if (event.keyCode == 13) {talk()}"></div>
 
