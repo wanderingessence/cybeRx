@@ -161,7 +161,7 @@ font-family: 'Montserrat Alternates', sans-serif;
 }
 
 #chatLog{
-  background-color:   #6B94BE;
+  background-color:   #75B7A9;
   margin-top: 200px;
   box-shadow: 10px 10px 5px 5px grey;
   width: 75%;
@@ -195,12 +195,12 @@ z-index: 2;
 
 .response{
   position: relative;
- bottom: 30px;
+ bottom: 200px;
  top: 15px;
  margin-top: 65px;
  margin-left: 0px;
  margin-right: 0px;
- margin-bottom: 30px;
+ margin-bottom: 100px;
 }
 
 .chatting{
@@ -229,7 +229,9 @@ z-index: -5;
   float: right;
   margin-right: 50px;
   color: white;
-  border: 6px solid #43DD9B 
+  border: 6px solid #43DD9B;
+   animation: createBox .5s;
+   text-align: right;
 }
 
 #botLog{
@@ -237,6 +239,8 @@ z-index: -5;
   float: left;
   margin-left: 50px;
   border: 6px solid white;
+   animation: createBox .5s;
+   text-align: left;
 }
 
 #chat{
@@ -244,3 +248,11 @@ z-index: -5;
   background-color:  #F8F8F8;
 }
 
+@keyframes createBox {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
