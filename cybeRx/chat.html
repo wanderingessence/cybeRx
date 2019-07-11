@@ -36,9 +36,16 @@ console.log("before bio")
 
 
    	var bio = "";
+   	var bioArray = [];
     function say(){
             alert(bio);
        }
+
+       function diCey(a){
+       		alert(bioArray[a]);
+       }
+
+       
 
    	userChat = [];
    	botChat = [];
@@ -79,6 +86,19 @@ console.log("before bio")
 
 	}
 
+	function parseBreak(str){
+		var fin = "";
+		for(var i = 0; i < str.length; i++){
+			var j = i % 65;
+			if((i >= 50 && i <= 65)){
+				fin += "<br>";
+			}
+		}
+
+		return fin;
+
+	}
+
    			var type11 = false;
    			var type12 = false;
    			var query = "";
@@ -96,7 +116,7 @@ console.log("before bio")
                 console.log(array);
                 document.getElementById("userBox").value = "";
                 
-                document.getElementById("chat").innerHTML += "<div id = \"youLog\" class = \"chatting\">" + characterBreak(user) + "</div><br>";
+                document.getElementById("chat").innerHTML += "<div id = \"youLog\" class = \"chatting\">" + characterBreak(user) +  "</div>" + parseBreak(user) + "<br>";
                 if (user == 1) {
                 	var string = "Which doctor are you looking for?<br> Press 11 if you are looking for a specific name. <br>ex. <i>David Smith</i><br>Press 12 if you are looking for a specific type of practicioner.<br> ex. <i>Cardiologist near me</i>"
                     document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + string + "</div><br><br>";
@@ -150,7 +170,7 @@ console.log("before bio")
 							
 							//info += "<div id = \"map\"></div>";
 							info += "<br><br><button class = \"description\" onclick = say()"   +  ">View Description </button>";
-							document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + info + "</div><br><br>";
+							document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + info + "</div>" + parseBreak(info) +  "<br><br>";
                     		userChat.push(characterBreak(user));
                     		botChat.push(characterBreak(info));
 
@@ -169,6 +189,7 @@ console.log("before bio")
 								for(var i = 0; i < 3; i++){
 									info = "";
 									bio = data.data[i].profile.bio;
+									bioArray[i] = bio;
 							console.log(data.data[i].profile.bio);
 							info += "Dr." +  data.data[i].profile.first_name + " " + data.data[i].profile.last_name + ", " + data.data[i].profile.title + "<br>" +"<br><br>";
 
@@ -188,8 +209,8 @@ console.log("before bio")
 							}
 							
 							//info += "<div id = \"map\"></div>";
-							info += "<br><br><button class = \"description\" onclick = say()"   +  ">View Description </button>";
-							document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + info + "</div><br><br>";
+							info += "<br><br><button class = \"description\" onclick = diCey(" + i + ")"   +  ">View Description </button>";
+							document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + info + "</div>"  + "<br><br><br><br>";
                     		userChat.push(characterBreak(user));
                     		botChat.push(characterBreak(info));
 								}
@@ -228,7 +249,7 @@ console.log("before bio")
 <div id = "nonsense" style="padding:20px;margin-top:30px;background:url(unblurred.png);height:100%; width: screen; background-size: cover;">
 
 	<div id="chatLog">Chat<br>
-		<div id = "chat">
+		<div id = "chat" style="height: 400px;position:relative;">
 			<div id = "botLog" class = "chatting">Hi, I'm CybeRx, your personal healthcare assistant.<br> How may I help you today?<br>Press 1 To try to find a Doctor<br>Press 2 to try to find possible diagnosis for your symptoms <br> Press 3 to take a brief health assessment. </div><br>
 		</div>
     </div>
