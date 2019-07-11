@@ -7,24 +7,37 @@
    <link href="https://fonts.googleapis.com/css?family=Audiowide|Montserrat|Montserrat+Alternates&display=swap" rel="stylesheet">
    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
    <link rel="icon" href="Final Logo.jpg">
-
+  
 
 
 
    <script>
+   	var array = [];
+
+
+   	function getLocation(x) {
+  if (navigator.geolocation) {
+   	 navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+
+}
+
+function showPosition(position, user) {
+  var arrays = [position.coords.latitude, position.coords.longitude];
+  array = arrays;
+  return arrays;
+}
+
+console.log("before bio")
+
 
    	var bio = "";
     function say(){
             alert(bio);
        }
 
-   	function initMap(){
-			var latlng = new google.maps.LatLng(39.305, -76.617);
-			map = new google.maps.Map(document.getElementById('map'), {
-  			center: latlng,
-  			zoom: 4
-});
-		}
    	userChat = [];
    	botChat = [];
 
@@ -65,16 +78,20 @@
 	}
 
    			var type11 = false;
-
+   			
+                getLocation(document.getElementById("userBox"));
    			
 
             function talk() {
 
             
             
+            	var user = document.getElementById("userBox").value;
 
-                var user = document.getElementById("userBox").value;
+                
+                console.log(array);
                 document.getElementById("userBox").value = "";
+                
                 document.getElementById("chat").innerHTML += "<div id = \"youLog\" class = \"chatting\">" + characterBreak(user) + "</div><br>";
                 if (user == 1) {
                 	var string = "Which doctor are you looking for?<br> Press 11 if you are looking for a specific name. <br>ex. <i>David Smith</i><br>Press 12 if you are looking for a specific type of practicioner.<br> ex. <i>Cardiologist near me</i>"
@@ -87,7 +104,15 @@
                     userChat.push(user);
                     botChat.push(string);
                     type11 = true;
-                } else if(type11 == true){
+                } else if(user == 12){
+                	var string = "What type of practicioner are you looking for?"
+                	document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + string + "</div><br>";
+                    userChat.push(user);
+                    botChat.push(string);
+                    type12 = true;
+                }
+
+                 else if(type11 == true){
  
                 	type11 = false;
                 	var string = "Nice Doctor name!";
@@ -122,6 +147,13 @@
                     		botChat.push(characterBreak(info));
 
 					});
+                } else if(type12 == true){
+                	type12 = false;
+                	var input = user;
+                	console.log(input);
+                	document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + array + "</div><br><br>";
+
+
                 }
 
 
@@ -161,6 +193,5 @@
 
 
 </div>
-<script async defer src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyB7DEtn83Etl9symbtjRd5KKGY_gJaR_Zs&callback=initMap"></script>
 </body>
 </html>
