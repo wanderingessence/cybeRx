@@ -10,19 +10,36 @@
 
 
 
+
    <script>
+
+   	var bio = "";
+    function say(){
+            alert(bio);
+       }
+
+   	function initMap(){
+			var latlng = new google.maps.LatLng(39.305, -76.617);
+			map = new google.maps.Map(document.getElementById('map'), {
+  			center: latlng,
+  			zoom: 4
+});
+		}
    	userChat = [];
    	botChat = [];
 
    	function characterBreak(str){
    		var final = "";
-   		var words = 0;
+   		var char = 0;
    		for (var i = 0; i < str.length; i++) {
+   			char++;
   			if(str.charAt(i) == " "){
-  				words++;
-  			} if(words == 6){
-  				final = final + "<br>" + str.charAt(i);
-  				words = 0;
+  				if((char >= 50) && (char <= 65)){
+  					final = final + str.charAt(i) + "<br>";
+  					char = 0;
+  				} else {
+  					final = final + str.charAt(i);
+  				}
   			}
 
   			else {
@@ -49,11 +66,16 @@
 
    			var type11 = false;
 
+   			
+
             function talk() {
+
+            
+            
 
                 var user = document.getElementById("userBox").value;
                 document.getElementById("userBox").value = "";
-                document.getElementById("chat").innerHTML += "<div id = \"youLog\" class = \"chatting\">" + user + "</div><br>";
+                document.getElementById("chat").innerHTML += "<div id = \"youLog\" class = \"chatting\">" + characterBreak(user) + "</div><br>";
                 if (user == 1) {
                 	var string = "Which doctor are you looking for?<br> Press 11 if you are looking for a specific name. <br>ex. <i>David Smith</i><br>Press 12 if you are looking for a specific type of practicioner.<br> ex. <i>Cardiologist near me</i>"
                     document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + string + "</div><br><br>";
@@ -66,6 +88,7 @@
                     botChat.push(string);
                     type11 = true;
                 } else if(type11 == true){
+ 
                 	type11 = false;
                 	var string = "Nice Doctor name!";
                 	var separate = user.split(" ");
@@ -75,13 +98,15 @@
                     var other = "";
                     var address = "";
                     var phoneNumber = "";
+
                     $.getJSON("https://api.betterdoctor.com/2016-03-01/doctors?first_name=" + firstName + "&last_name=" + lastName + "&skip=0&limit=10&user_key=afbd778310f54f209917a0810b0f8aed",
 							function(data){
-							console.log(data);
+							bio = data.data[0].profile.bio;
 							console.log(data.data[0].profile.bio);
 							info += "Dr." +  data.data[0].profile.first_name + " " + data.data[0].profile.last_name + ", " + data.data[0].profile.title + "<br>" + data.data[0].specialties[0].name + "<br><br>";
 
 							var datas = data.data[0];
+							var quote ='"';
 
 							if(datas.practices[0] != null){
 								address = "<br>" + data.data[0].practices[0].visit_address.street + "<br>" + data.data[0].practices[0].visit_address.city + ", " + data.data[0].practices[0].visit_address.state + " " + data.data[0].practices[0].visit_address.zip + "<br>";
@@ -90,16 +115,20 @@
 							
 							info += address;
 							info += "<br>"  + parsePhone(phoneNumber);
+							//info += "<div id = \"map\"></div>";
+							info += "<br><br><button class = \"description\" onclick = say()"   +  ">View Description </button>";
 							document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + info + "</div><br><br>";
-                    		userChat.push(user);
+                    		userChat.push(characterBreak(user));
                     		botChat.push(characterBreak(info));
+
 					});
                 }
 
 
                 else {
-                    document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + "I'm sorry I can't parse your text properly<br> Please try typing in one of the options, shown in the welcome statement. <br>" + "</div><br>";
-                    userChat.push(user);
+                	var neutral = "I'm sorry I can't parse your text properly Please try typing in one of the options, shown in the welcome statement.";
+                    document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(neutral) + "</div><br>";
+                    userChat.push(characterBreak(user)) + "<br><br>";
                     botChat.push("I'm sorry I cannot interpret your input properly.<br> Please try typing in one of the options, shown in the welcome statement. <br>");
                 }
 
@@ -124,7 +153,7 @@
 
 	<div id="chatLog">Chat<br>
 		<div id = "chat">
-			<div id = "botLog" class = "chatting">Hi, I'm CybeRx, your personal healthcare assistant. How may I help you today?<br>Press 1 To try to find a Doctor<br>Press 2 to try to find possible diagnosis for your symptoms, <br> Press 3 to take a brief health assessment. </div><br>
+			<div id = "botLog" class = "chatting">Hi, I'm CybeRx, your personal healthcare assistant.<br> How may I help you today?<br>Press 1 To try to find a Doctor<br>Press 2 to try to find possible diagnosis for your symptoms <br> Press 3 to take a brief health assessment. </div><br>
 		</div>
     </div>
     <div class = "response"><input id="userBox" type="text" onkeydown="if (event.keyCode == 13) {talk()}"></div>
@@ -132,6 +161,6 @@
 
 
 </div>
-
+<script async defer src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyB7DEtn83Etl9symbtjRd5KKGY_gJaR_Zs&callback=initMap"></script>
 </body>
 </html>

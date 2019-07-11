@@ -256,3 +256,26 @@ z-index: -5;
     transform: scale(1);
   }
 }
+
+#map{
+      height: 200px;
+      width: 200px;
+    }
+
+
+
+.description{
+   background-color: #ff6961 ;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: 'Montserrat', sans-serif;
+font-family: 'Montserrat Alternates', sans-serif;
+}
