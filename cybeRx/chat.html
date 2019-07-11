@@ -12,6 +12,8 @@
 
 
    <script>
+
+   	//6277
    	var array = [];
 
 
@@ -78,6 +80,8 @@ console.log("before bio")
 	}
 
    			var type11 = false;
+   			var type12 = false;
+   			var query = "";
    			
                 getLocation(document.getElementById("userBox"));
    			
@@ -107,6 +111,7 @@ console.log("before bio")
                 } else if(user == 12){
                 	var string = "What type of practicioner are you looking for?"
                 	document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + string + "</div><br>";
+                	query = user;
                     userChat.push(user);
                     botChat.push(string);
                     type12 = true;
@@ -139,7 +144,10 @@ console.log("before bio")
 							}
 							
 							info += address;
-							info += "<br>"  + parsePhone(phoneNumber);
+							if(phoneNumber != undefined){
+								info += "<br>"  + parsePhone(phoneNumber);
+							}
+							
 							//info += "<div id = \"map\"></div>";
 							info += "<br><br><button class = \"description\" onclick = say()"   +  ">View Description </button>";
 							document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + info + "</div><br><br>";
@@ -151,8 +159,44 @@ console.log("before bio")
                 	type12 = false;
                 	var input = user;
                 	console.log(input);
-                	document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + array + "</div><br><br>";
+                	var latitude = array[0];
+                	var longitude = array[1];
+                	console.log(latitude + ", " + longitude);
+                	info = "";
+                	$.getJSON("https://api.betterdoctor.com/2016-03-01/doctors?query=" + user + "&location=" + latitude + "%2C%20" + longitude + "%2C50&skip=0&limit=10&user_key=afbd778310f54f209917a0810b0f8aed",
+							function(data){
 
+								for(var i = 0; i < 3; i++){
+									info = "";
+									bio = data.data[i].profile.bio;
+							console.log(data.data[i].profile.bio);
+							info += "Dr." +  data.data[i].profile.first_name + " " + data.data[i].profile.last_name + ", " + data.data[i].profile.title + "<br>" +"<br><br>";
+
+							var datas = data.data[i];
+							var quote ='"';
+
+							if(datas.practices[i] != null){
+								address = "<br>" + data.data[i].practices[i].visit_address.street + "<br>" + data.data[i].practices[i].visit_address.city + ", " + data.data[i].practices[i].visit_address.state + " " + data.data[i].practices[i].visit_address.zip + "<br>";
+								if(phoneNumber != undefined){
+								phoneNumber =  data.data[i].practices[i].phones[i].number;
+							}
+							}
+							
+							info += address;
+							if(phoneNumber != undefined){
+							info += "<br>"  + parsePhone(phoneNumber);	
+							}
+							
+							//info += "<div id = \"map\"></div>";
+							info += "<br><br><button class = \"description\" onclick = say()"   +  ">View Description </button>";
+							document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + info + "</div><br><br>";
+                    		userChat.push(characterBreak(user));
+                    		botChat.push(characterBreak(info));
+								}
+							
+
+					});
+                	
 
                 }
 
