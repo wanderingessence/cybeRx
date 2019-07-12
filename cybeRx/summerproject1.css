@@ -244,8 +244,9 @@ z-index: -5;
 }
 
 #chat{
-  overflow-y: auto;
+  overflow-y: scroll;
   background-color:  #F8F8F8;
+
 }
 
 @keyframes createBox {
