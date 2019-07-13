@@ -66,7 +66,6 @@ var firebaseConfig = {
             found = true;
         }
   });
-
     if(found == false){
         ref.push(data);
         alert("Sign up Successful. Please Log in.");

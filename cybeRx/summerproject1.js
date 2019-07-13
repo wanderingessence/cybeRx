@@ -165,8 +165,8 @@ var user = document.getElementById("userBox").value;
                 	const NaturalLanguageUnderstandingV1 = require('ibm-watson/natural-language-understanding/v1.js');
 					const naturalLanguageUnderstanding = new NaturalLanguageUnderstandingV1({
 					  version: '2019-07-12',
-					  iam_apikey: 'RMW0D6GsfrKrTlFw_fQR7ZXzWvlN7p-EY2pcQYF8qOUA',
-					  url: 'https://gateway-syd.watsonplatform.net/natural-language-understanding/api'
+					  iam_apikey: '{RMW0D6GsfrKrTlFw_fQR7ZXzWvlN7p-EY2pcQYF8qOUA}',
+					  url: '{https://gateway-syd.watsonplatform.net/natural-language-understanding/api}'
 					});
 					const analyzeParams = {
 					  'url': 'www.ibm.com',
