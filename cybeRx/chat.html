@@ -6,7 +6,13 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Montserrat+Alternates&display=swap" rel="stylesheet">
    <link href="https://fonts.googleapis.com/css?family=Audiowide|Montserrat|Montserrat+Alternates&display=swap" rel="stylesheet">
    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+   <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
    <script src = "summerproject1.js"></script>
+   <script src="require.js"></script>
+   <!-- <script src="server.js"></script> -->
+   <!-- <script src = "script.js"></script> -->
+   <!-- <script src = "variable.js"></script> -->
    <link rel="icon" href="Final Logo.jpg">
 <body>
 </head>
@@ -25,7 +31,8 @@
 		</div>
 		<script> $('.chat').scrollTop($('.chat').scrollHeight);</script>
     </div>
-    <div class = "response"><input id="userBox" type="text" onkeydown="if (event.keyCode == 13) {talk()}"></div>
+    <div class = "response"><input id="userBox" type="text" list="theDataList" onkeydown="if (event.keyCode == 13) {talk()}"></div>
+    <datalist id = "theDataList"></datalist>
 	</div>
 </div>
 </body>
