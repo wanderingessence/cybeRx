@@ -1218,11 +1218,15 @@ function showPosition(position, user) {
 }
 var bio = "";
 var bioArray = [];
+var bioArray2 = [];
 function say(){
 	alert(bio);
 }
 function diCey(a){
 	alert(bioArray[a]);
+}
+function diCey2(a){
+	alert(bioArray2[a]);
 }
 userChat = [];
 botChat = [];
@@ -1272,6 +1276,7 @@ function parseBreak(str){
 }
 var type11 = false;
 var type12 = false;
+var is2 = false;
 var query = "";
 getLocation(document.getElementById("userBox"));
 function talk() {
@@ -1387,15 +1392,25 @@ function talk() {
 			if(user.includes(bodyParts[i])){
 				console.log(bodyParts[i]);
 			}
+			bodyString += " " + bodyParts[i];
 		}
 
+		var adjectiveArray = [];
+
+		var adjString = "";
+		var bodyString = "";
 		for(var i = 0; i < adjectives.length; i++){
 			if(user.includes(adjectives[i])){
+
 				console.log(adjectives[i]);
+				adjString += " " + adjectives[i];
 			}
 		}
 
-		var apimedicURL = "https://healthservice.priaid.ch/diagnosis?symptoms=[" + verifyArray+ "]&gender=male&year_of_birth=82&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImNocmlzdG9waGVyY2h1MDgxMDk4QGdtYWlsLmNvbSIsInJvbGUiOiJVc2VyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvc2lkIjoiMjcwNCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvdmVyc2lvbiI6IjEwOSIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbGltaXQiOiIxMDAiLCJodHRwOi8vZXhhbXBsZS5vcmcvY2xhaW1zL21lbWJlcnNoaXAiOiJCYXNpYyIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbGFuZ3VhZ2UiOiJlbi1nYiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvZXhwaXJhdGlvbiI6IjIwOTktMTItMzEiLCJodHRwOi8vZXhhbXBsZS5vcmcvY2xhaW1zL21lbWJlcnNoaXBzdGFydCI6IjIwMTktMDctMTAiLCJpc3MiOiJodHRwczovL2F1dGhzZXJ2aWNlLnByaWFpZC5jaCIsImF1ZCI6Imh0dHBzOi8vaGVhbHRoc2VydmljZS5wcmlhaWQuY2giLCJleHAiOjE1NjM2NjA0NDAsIm5iZiI6MTU2MzY1MzI0MH0.i4jR4sIL55BCCssk1aoqmo4gOf37Evh4au1vUgGzTU8&format=json&language=en-gb";
+		
+
+
+		var apimedicURL = "https://healthservice.priaid.ch/diagnosis?symptoms=[" + verifyArray+ "]&gender=female&year_of_birth=82&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImNocmlzdG9waGVyY2h1MDgxMDk4QGdtYWlsLmNvbSIsInJvbGUiOiJVc2VyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvc2lkIjoiMjcwNCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvdmVyc2lvbiI6IjEwOSIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbGltaXQiOiIxMDAiLCJodHRwOi8vZXhhbXBsZS5vcmcvY2xhaW1zL21lbWJlcnNoaXAiOiJCYXNpYyIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbGFuZ3VhZ2UiOiJlbi1nYiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvZXhwaXJhdGlvbiI6IjIwOTktMTItMzEiLCJodHRwOi8vZXhhbXBsZS5vcmcvY2xhaW1zL21lbWJlcnNoaXBzdGFydCI6IjIwMTktMDctMTAiLCJpc3MiOiJodHRwczovL2F1dGhzZXJ2aWNlLnByaWFpZC5jaCIsImF1ZCI6Imh0dHBzOi8vaGVhbHRoc2VydmljZS5wcmlhaWQuY2giLCJleHAiOjE1NjM2NjA0NDAsIm5iZiI6MTU2MzY1MzI0MH0.i4jR4sIL55BCCssk1aoqmo4gOf37Evh4au1vUgGzTU8&format=json&language=en-gb";
 
 
 		if(verifyArray.length == 0){
@@ -1415,6 +1430,35 @@ function talk() {
 				}
 
 				infos += "<br>Keep note that this is not a diagnosis, see a medical professional for a more accurate opinion. ";
+
+				$.getJSON("https://api.betterdoctor.com/2016-03-01/doctors?query=" + adjString + " " + bodyString+ "&location=" + array[0] + "%2C%20" + array[1] + "%2C50&skip=0&limit=10&user_key=afbd778310f54f209917a0810b0f8aed",
+			function(data){
+			
+
+				for(var i = 0; i < 3; i++){
+					info = "";
+					bio = data.data[i].profile.bio;
+					bioArray2[i] = bio;
+					info += "Dr." +  data.data[i].profile.first_name + " " + data.data[i].profile.last_name + ", " + data.data[i].profile.title + "<br>" +"<br><br>";
+					var datas = data.data[i];
+					var quote ='"';
+					if(datas.practices[i] != null){
+						address = "<br>" + data.data[i].practices[i].visit_address.street + "<br>" + data.data[i].practices[i].visit_address.city + ", " + data.data[i].practices[i].visit_address.state + " " + data.data[i].practices[i].visit_address.zip + "<br>";
+						if(phoneNumber != undefined){
+							phoneNumber =  data.data[i].practices[i].phones[i].number;
+						}
+					}
+					info += address;
+					if(phoneNumber != undefined){
+						info += "<br>"  + parsePhone(phoneNumber);	
+					}
+					info += "<br><br><button class = \"description\" onclick = diCey2(" + i + ")"   +  ">View Description </button>";
+					document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + info + "</div>"  + "<br><br><br><br>";
+					userChat.push(characterBreak(user));
+					botChat.push(characterBreak(info));
+				}
+			});
+
 
 				
 
