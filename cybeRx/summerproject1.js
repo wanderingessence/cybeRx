@@ -1135,7 +1135,7 @@ var bodyParts = ['abdomen', 'face', 'tooth', 'anus', 'back',' mouth', 'skin',
  'mood', 'leg', 'blood', 'testosterone', 'estrogen', 'fluid', 'lymph node',
  'muscle', 'ovaries', 'pancreas', 'pelvis', 'pregnancy', 'prostate', 'retina', 'spot', 'ear',
 'cuff', 'ear', 'rectum', 'neck', 'tongue', 'tonsils', 'testicles', 'urine', 'cervix', 'wrist', 'mouth', 'nose', 'head','shoulder',
-'armpit'
+'armpit', 'eye'
 ];
 
 
@@ -1188,10 +1188,12 @@ var adjectives = ['abdominal pain', 'abnormal facial expressions', 'abscessed to
 'swollen knee', 'swollen joints', 'swollen lymph nodes', 'swollen testicles', 'swollen tongue', 
 'swollen tonsils', 'teen', 'testicular pain', 'testicular swelling', 'thirst', 'throat cancer', 'tic', 'chest tightness', 'toothache', 'torn ACL',
 'tremor', 'tuberculosis', 'panic attack', 'tunnel vision', 'ulcerative colitis', 'unusual behavior', 'upper respiratory infection', 'urethra',
-'urinary retention', 'urinary urgency', 'pee', 'poop', 'defecate', 'urinate', 'period', 'vaginal bleeding', 'vaginal discharge', 
+'urinary retention', 'urinary urgency', 'pee', 'poop', 'homicidal', 'defecate', 'urinate', 'period', 'vaginal bleeding', 'vaginal discharge', 
 'vaginal dryness', 'vaginal itching', 'vaginal odor', 'vaginal pain', 'vaginal yeast infection', 'vaginitis', 'varicose veins', 'vertigo', 'vision loss'
 , 'vomiting', 'vomiting blood', 'watery', 'watery eye', 'weight gain', 'weakness', 'weight loss', 'west nile virus', 'wheezing', 'wet', 'whooping cough', 
-'pertussis', 'wrist pain', 'yawning', 'yawn', 'zika virus', 'addiction', 'acne', 'pimples', 'pimple'
+'pertussis', 'wrist pain', 'yawning', 'yawn', 'zika virus', 'addiction', 'acne', 'pimples', 'pimple', 'dizzy', 'dry mouth', 'sleepy', 'shortness of breath', 'thirsty',
+'tired', 'weak', 'see', 'sleep', 'smell', 'speak', 'watery bowel', 'scratch', 'sweat', 'walk', 'write', 'aspergers', 'psychosis', 'body dysmorphic disorder', 'mood regulation', 
+'thought disorder', 'obsessive compulsive disorder'
 ];
 
 
@@ -1280,6 +1282,8 @@ var is2 = false;
 var query = "";
 getLocation(document.getElementById("userBox"));
 function talk() {
+  var username =  parent.document.URL.substring(parent.document.URL.indexOf('=') + 1, parent.document.URL.length);
+  console.log(username);
 	var user = document.getElementById("userBox").value;
 	document.getElementById("userBox").value = "";
 	document.getElementById("chat").innerHTML += "<div id = \"youLog\" class = \"chatting\">" + characterBreak(user) +  "</div>" + parseBreak(user) + "<br>";
@@ -1370,10 +1374,12 @@ function talk() {
 
 			var string = "What seems to be the problem you have been experiencing? Use one of the keywords, per <a href = \"symptomlist.html\"  target=\"_blank\"> SymptomList</a> the complete list of symptoms."
 		document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + string + "</div><br>";
-		for(var i = 0; i < symptomy.length; i++){
-			document.getElementById("theDataList").innerHTML += "<option value =\"" + symptomy[i].Name + "\">";
-		}
+		
 		is2 = true;
+
+    for(var i = 0; i < symptomy.length; i++){
+      document.getElementById("theDataList").innerHTML += "<option value =\"" + symptomy[i].Name + "\">";
+    }
 
 	} else if(is2 == true){
 
@@ -1410,7 +1416,7 @@ function talk() {
 		
 
 
-		var apimedicURL = "https://healthservice.priaid.ch/diagnosis?symptoms=[" + verifyArray+ "]&gender=female&year_of_birth=82&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImNocmlzdG9waGVyY2h1MDgxMDk4QGdtYWlsLmNvbSIsInJvbGUiOiJVc2VyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvc2lkIjoiMjcwNCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvdmVyc2lvbiI6IjEwOSIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbGltaXQiOiIxMDAiLCJodHRwOi8vZXhhbXBsZS5vcmcvY2xhaW1zL21lbWJlcnNoaXAiOiJCYXNpYyIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbGFuZ3VhZ2UiOiJlbi1nYiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvZXhwaXJhdGlvbiI6IjIwOTktMTItMzEiLCJodHRwOi8vZXhhbXBsZS5vcmcvY2xhaW1zL21lbWJlcnNoaXBzdGFydCI6IjIwMTktMDctMTAiLCJpc3MiOiJodHRwczovL2F1dGhzZXJ2aWNlLnByaWFpZC5jaCIsImF1ZCI6Imh0dHBzOi8vaGVhbHRoc2VydmljZS5wcmlhaWQuY2giLCJleHAiOjE1NjM2NjA0NDAsIm5iZiI6MTU2MzY1MzI0MH0.i4jR4sIL55BCCssk1aoqmo4gOf37Evh4au1vUgGzTU8&format=json&language=en-gb";
+		var apimedicURL = "https://healthservice.priaid.ch/diagnosis?symptoms=[" + verifyArray+ "]&gender=male&year_of_birth=82&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImNocmlzdG9waGVyY2h1MDgxMDk4QGdtYWlsLmNvbSIsInJvbGUiOiJVc2VyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvc2lkIjoiMjcwNCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvdmVyc2lvbiI6IjEwOSIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbGltaXQiOiIxMDAiLCJodHRwOi8vZXhhbXBsZS5vcmcvY2xhaW1zL21lbWJlcnNoaXAiOiJCYXNpYyIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbGFuZ3VhZ2UiOiJlbi1nYiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvZXhwaXJhdGlvbiI6IjIwOTktMTItMzEiLCJodHRwOi8vZXhhbXBsZS5vcmcvY2xhaW1zL21lbWJlcnNoaXBzdGFydCI6IjIwMTktMDctMTAiLCJpc3MiOiJodHRwczovL2F1dGhzZXJ2aWNlLnByaWFpZC5jaCIsImF1ZCI6Imh0dHBzOi8vaGVhbHRoc2VydmljZS5wcmlhaWQuY2giLCJleHAiOjE1NjM3NTM5NzQsIm5iZiI6MTU2Mzc0Njc3NH0.nHQE3gonhgzYibtWbSgzAEDE4y4Oy6GcTyY3lFAJgt4&format=json&language=en-gb";
 
 
 		if(verifyArray.length == 0){
@@ -1433,7 +1439,7 @@ function talk() {
 
 				$.getJSON("https://api.betterdoctor.com/2016-03-01/doctors?query=" + adjString + " " + bodyString+ "&location=" + array[0] + "%2C%20" + array[1] + "%2C50&skip=0&limit=10&user_key=afbd778310f54f209917a0810b0f8aed",
 			function(data){
-			
+				document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + "Here are some suggested doctors based on your reported conditions: "+ "</div>"  + "<br><br>";
 
 				for(var i = 0; i < 3; i++){
 					info = "";
@@ -1453,7 +1459,7 @@ function talk() {
 						info += "<br>"  + parsePhone(phoneNumber);	
 					}
 					info += "<br><br><button class = \"description\" onclick = diCey2(" + i + ")"   +  ">View Description </button>";
-					document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + info + "</div>"  + "<br><br><br><br>";
+					document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + info + parseBreak(info) + "</div>"  + "<br><br>";
 					userChat.push(characterBreak(user));
 					botChat.push(characterBreak(info));
 				}
@@ -1499,7 +1505,28 @@ function talk() {
 
 	is2 = false;
 
-	}
+	} else if (user == 3){
+    var testString = "Type 'ready' if you can start the assessment.";
+      document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + testString + parseBreak(testString) + "</div>"  + "<br><br>";
+
+
+   
+
+  } else if(user == 'ready'){
+   
+       var testQuestions = ["What is your name? (If you would not like to disclose, type 'n/a'.)", "What is your Age?", "What is your gender? (M/F)", "What is your ethnicity?",
+    "What is your height?", "What is your weight?", "What symptoms have you been experiencing?", "How long has this issue been occuring for?", "Are there any other symptoms that you have?",
+    "How would you rate your pain?", "Do you have any family history of illnesses? If so, type the relation and the condition and age of onset. Example: <i>Aunt Breast Cancer, 35</i>", "Is there any other important information you would like to share?"];
+
+    document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + testQuestions[0]+ "</div>"  + "<br>";
+
+
+
+
+    user = document.getElementById("userBox").value;
+    console.log(user);
+
+  }
 	else {
 		var neutral = "I'm sorry I can't parse your text properly Please try typing in one of the options, shown in the welcome statement.";
 		document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(neutral) + "</div><br>";
