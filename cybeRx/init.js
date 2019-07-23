@@ -12,28 +12,48 @@ var firebaseConfig = {
   var ref = database.ref('User').orderByKey();
   var found = false;
   function login(){
-    ref.once("value")
-  .then(function(snapshot) {
-    snapshot.forEach(function(childSnapshot) {
-      var key = childSnapshot.key;
-      var childData = childSnapshot.val();
-      var username = childData.username;
-      var password = atob(childData.password);
-      var passwordy= document.getElementById("password").value;
-    var usernamey = document.getElementById("username").value;
-        if(passwordy == password && usernamey == username){
-            alert("User authenticated :D");
-            found = true;
-            document.location.href = "chat.html";
-            return;
-        }
-  });
-    if(!found){
-        alert("Incorrect username/password combination");
-        return;
+       var password= document.getElementById("password").value;
+    var username = document.getElementById("username").value;
+//     ref.once("value")
+//   .then(function(snapshot) {
+//     snapshot.forEach(function(childSnapshot) {
+//       var key = childSnapshot.key;
+//       var childData = childSnapshot.val();
+//       var username = childData.username;
+//       var password = atob(childData.password);
+//       var passwordy= document.getElementById("password").value;
+//     var usernamey = document.getElementById("username").value;
+//         if(passwordy == password && usernamey == username){
+//             alert("User authenticated :D");
+//             found = true;
+//             document.location.href = "chat.html";
+//             return;
+//         }
+//   });
+//     if(!found){
+//         alert("Incorrect username/password combination");
+//         return;
 
-    }
-});
+//     }
+// });
+
+var errorPresent = false;
+ firebase.auth().signInWithEmailAndPassword(username, password).catch(function(error) {
+          // Handle Errors here.
+          if(error){
+            alert("signup error");
+            errorPresent = true;
+          } 
+             
+
+         
+          // [END_EXCLUDE]
+        });
+
+      if(!errorPresent){
+        document.location.href = "chat.html?user=" + username;
+      }
+
   }
   function signup(){
 //     var ref = database.ref('User');

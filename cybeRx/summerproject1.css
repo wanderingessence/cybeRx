@@ -121,6 +121,7 @@ input[type="text"],input[type="password"]{
 	padding-left: 15px;
 }
 
+
 input[type=button]{
 	font-family: 'Montserrat', sans-serif;
 font-family: 'Montserrat Alternates', sans-serif;
@@ -296,7 +297,7 @@ input {
 
 input[type=text] {
   background-color: #f1f1f1;
-  width: 100%;
+  width: 300px;
 }
 
 input[type=submit] {
