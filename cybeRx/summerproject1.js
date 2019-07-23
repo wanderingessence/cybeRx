@@ -1202,7 +1202,8 @@ var adjectives = ['abdominal pain', 'abnormal facial expressions', 'abscessed to
 
 
 
-
+var surveyTurnedOn = false;
+var surveyIndex = 0;
 var array = [];
 var response = "";
 var senorita = "wow my name is mary and i like pie particularly wolfs pie and shepards pie and since this thing is so damn annoying it demands a boatload of text to be happy.";
@@ -1506,19 +1507,46 @@ function talk() {
 	is2 = false;
 
 	} else if (user == 3){
-    var testString = "Type 'ready' if you can start the assessment.";
+    var testString = "Type any key if you can start the assessment.";
       document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + testString + parseBreak(testString) + "</div>"  + "<br><br>";
-
+      surveyTurnedOn = true;
 
    
 
-  } else if(user == 'ready'){
+  } else if(surveyTurnedOn){
    
        var testQuestions = ["What is your name? (If you would not like to disclose, type 'n/a'.)", "What is your Age?", "What is your gender? (M/F)", "What is your ethnicity?",
     "What is your height?", "What is your weight?", "What symptoms have you been experiencing?", "How long has this issue been occuring for?", "Are there any other symptoms that you have?",
     "How would you rate your pain?", "Do you have any family history of illnesses? If so, type the relation and the condition and age of onset. Example: <i>Aunt Breast Cancer, 35</i>", "Is there any other important information you would like to share?"];
 
-    document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + testQuestions[0]+ "</div>"  + "<br>";
+    document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + testQuestions[surveyIndex]+ "</div>"  + "<br>";
+    var z = surveyIndex;
+    if(z == 0){
+
+    } else if (z == 1){
+
+    } else if (z == 2){
+      
+    } else if (z == 3){
+      
+    } else if (z == 4){
+      
+    } else if (z == 5){
+      
+    } else if (z == 6){
+      
+    } else if (z == 7){
+      
+    } else if (z == 8){
+      
+    } else if (z == 9){
+      
+    } else if (z == 10){
+      
+    } else if (z == 11){
+      
+    }
+    surveyIndex++;
 
 
 
