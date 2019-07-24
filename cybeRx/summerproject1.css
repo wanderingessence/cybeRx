@@ -27,10 +27,10 @@ li a {
 }
 
 li a:hover:not(.active) {
-	 background-size: 100% 2px;
-  	transition: 0.25s;
-	border-bottom: 4px solid #DCDCDC;
-  	color: #DCDCDC;
+   background-size: 100% 2px;
+    transition: 0.25s;
+  border-bottom: 4px solid #DCDCDC;
+    color: #DCDCDC;
 }
 
  li a:before {
@@ -67,7 +67,7 @@ a:hover:before {
 }
 
 #words{
-	font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 font-family: 'Montserrat Alternates', sans-serif;
 font-family: 'Expletus Sans', cursive;
 font-family: 'Audiowide', cursive;
@@ -77,7 +77,7 @@ margin: auto;
 }
 
 #words2{
-	font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 font-family: 'Montserrat Alternates', sans-serif;
 font-family: 'Expletus Sans', cursive;
 font-family: 'Audiowide', cursive;
@@ -87,7 +87,7 @@ color: white;
 }
 
 #words3{
-	font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 font-family: 'Montserrat Alternates', sans-serif;
 font-family: 'Expletus Sans', cursive;
 font-family: 'Audiowide', cursive;
@@ -98,53 +98,53 @@ color: white;
 
 
 .bgimage{
-	background: url("https://media.wired.com/photos/5b7350b5b26dad784bab571a/master/pass/Robot%20interactions%20with%20kids-peer%20pressure.jpg");
+  background: url("https://media.wired.com/photos/5b7350b5b26dad784bab571a/master/pass/Robot%20interactions%20with%20kids-peer%20pressure.jpg");
 }
 
 .container{
-	width: 500px;
-	height: 450px;
-	text-align: center;
-	margin: 0 auto;
-	background-color: rgba(44, 62, 80,0.75);
-	margin-top: -8px;
-	border-radius: 15px;
+  width: 500px;
+  height: 450px;
+  text-align: center;
+  margin: 0 auto;
+  background-color: rgba(44, 62, 80,0.75);
+  margin-top: -8px;
+  border-radius: 15px;
   overflow: auto;
 }
  
 input[type="text"],input[type="password"]{
-	margin-top: 30px;
-	height: 45px;
-	width: 300px;
-	font-size: 18px;
-	margin-bottom: 20px;
-	background-color: #fff;
-	padding-left: 15px;
+  margin-top: 30px;
+  height: 45px;
+  width: 300px;
+  font-size: 18px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  padding-left: 15px;
 }
 
 
 input[type=button]{
-	font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 font-family: 'Montserrat Alternates', sans-serif;
 }
  
 .form-input::before{
-	/*content: "\f007";*/
+  /*content: "\f007";*/
 
-	font-family: "FontAwesome";
-	padding-left: 03px;
-	padding-top: 40px;
-	position: absolute;
-	font-size: 35px;
-	color: #2980b9; 
+  font-family: "FontAwesome";
+  padding-left: 03px;
+  padding-top: 40px;
+  position: absolute;
+  font-size: 35px;
+  color: #2980b9; 
 }
  
 
 .btn-login{
-	padding: 15px 25px;
-	border: none;
-	background-color: #27ae60;
-	color: #fff;
+  padding: 15px 25px;
+  border: none;
+  background-color: #27ae60;
+  color: #fff;
 }
 
 ::-webkit-input-placeholder {
@@ -152,19 +152,19 @@ font-family: 'Montserrat Alternates', sans-serif;
 }
 
 #dont{
-	color: white;
+  color: white;
 }
 
 .btn-signup{
-	padding: 15px 30px;
-	border: none;
-	background-color: #d6204e;
-	color: #fff;
+  padding: 15px 30px;
+  border: none;
+  background-color: #d6204e;
+  color: #fff;
 }
 
 #chatLog{
   background-color:   #75B7A9;
-  margin-top: 200px;
+  margin-top: 250px;
   box-shadow: 10px 10px 5px 5px grey;
   width: 75%;
   margin-left: auto;
@@ -243,6 +243,7 @@ z-index: -5;
   border: 6px solid white;
    animation: createBox .5s;
    text-align: left;
+   margin-top: 5px;
 }
 
 #chat{
@@ -340,8 +341,8 @@ input[type=submit] {
 }
 
 .container{
-  width : 65%;
-  height: 75px;
+  width : 100%;
+  height: 40px;
   position: relative;
   margin: auto;
   top: 0;
@@ -353,11 +354,13 @@ input[type=submit] {
 }
 
 .slider{
-  width: 100%;
-  height: 15px;
+  width: 150px;
+  height: 10px;
   -webkit-appearance: none;
   border-radius: 1px;
   background-color: #00cc66;
+  background: url("gradient.png");
+   background-size: 100%;
   box-shadow: inset 0 1px 4px rgba(0,0,0,0.6);
 }
 
@@ -382,14 +385,27 @@ input[type=submit] {
 }
 .box{
   background-color: #333333;
-  height: 70px;
-  width: 70px;
+  height: 25px;
+  width: 25px;
   border-radius: 0 50% 50% 50%;
   transform: rotate(-135deg);
   position: absolute;
-  margin: auto;
+  /*margin: auto;*/
   left: 0;
   right: 0;
-  top: 20px;
+  float: left;
+  margin-top: -40px;
+  margin-left: 130px;
+  /*top: 20px;*/
 }
+
+
+#value{
+  color:white;
+  transform: rotate(135deg);
+  position: relative;
+  font-size: 43px;
+  font-family: 'Montserrat', sans-serif;
+}
+
 

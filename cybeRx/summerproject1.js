@@ -1,791 +1,44 @@
-var symptomy = [
-  {
-    "ID": 188,
-    "Name": "Abdominal guarding"
-  },
-  {
-    "ID": 10,
-    "Name": "Abdominal pain"
-  },
-  {
-    "ID": 223,
-    "Name": "Abdominal pain associated with menstruation"
-  },
-  {
-    "ID": 984,
-    "Name": "Absence of a pulse"
-  },
-  {
-    "ID": 974,
-    "Name": "Aggressiveness"
-  },
-  {
-    "ID": 981,
-    "Name": "Agitation"
-  },
-  {
-    "ID": 996,
-    "Name": "Ankle deformity"
-  },
-  {
-    "ID": 147,
-    "Name": "Ankle swelling"
-  },
-  {
-    "ID": 238,
-    "Name": "Anxiety"
-  },
-  {
-    "ID": 1009,
-    "Name": "Arm pain"
-  },
-  {
-    "ID": 971,
-    "Name": "Arm swelling"
-  },
-  {
-    "ID": 998,
-    "Name": "Back deformity"
-  },
-  {
-    "ID": 104,
-    "Name": "Back pain"
-  },
-  {
-    "ID": 180,
-    "Name": "Black stools"
-  },
-  {
-    "ID": 57,
-    "Name": "Blackening of vision"
-  },
-  {
-    "ID": 24,
-    "Name": "Blackhead"
-  },
-  {
-    "ID": 284,
-    "Name": "Bleeding from vagina"
-  },
-  {
-    "ID": 176,
-    "Name": "Bleeding in the conjunctiva of the eye"
-  },
-  {
-    "ID": 48,
-    "Name": "Bloated feeling in the stomach"
-  },
-  {
-    "ID": 190,
-    "Name": "Blood in stool"
-  },
-  {
-    "ID": 233,
-    "Name": "Bloody cough"
-  },
-  {
-    "ID": 991,
-    "Name": "Blue colored skin"
-  },
-  {
-    "ID": 240,
-    "Name": "Blue spot on skin"
-  },
-  {
-    "ID": 77,
-    "Name": "Blurred vision"
-  },
-  {
-    "ID": 239,
-    "Name": "Bold area among hair on the head"
-  },
-  {
-    "ID": 156,
-    "Name": "Bone fracture"
-  },
-  {
-    "ID": 250,
-    "Name": "Breathing-related pains"
-  },
-  {
-    "ID": 979,
-    "Name": "Brittleness of nails"
-  },
-  {
-    "ID": 192,
-    "Name": "Bulging abdominal wall"
-  },
-  {
-    "ID": 75,
-    "Name": "Burning eyes"
-  },
-  {
-    "ID": 46,
-    "Name": "Burning in the throat"
-  },
-  {
-    "ID": 288,
-    "Name": "Burning nose"
-  },
-  {
-    "ID": 107,
-    "Name": "Burning sensation when urinating"
-  },
-  {
-    "ID": 91,
-    "Name": "Changes in the nails"
-  },
-  {
-    "ID": 170,
-    "Name": "Cheek swelling"
-  },
-  {
-    "ID": 17,
-    "Name": "Chest pain"
-  },
-  {
-    "ID": 31,
-    "Name": "Chest tightness"
-  },
-  {
-    "ID": 175,
-    "Name": "Chills"
-  },
-  {
-    "ID": 218,
-    "Name": "Coarsening of the skin structure"
-  },
-  {
-    "ID": 89,
-    "Name": "Cold feet"
-  },
-  {
-    "ID": 978,
-    "Name": "Cold hands"
-  },
-  {
-    "ID": 139,
-    "Name": "Cold sweats"
-  },
-  {
-    "ID": 15,
-    "Name": "Cough"
-  },
-  {
-    "ID": 228,
-    "Name": "Cough with sputum"
-  },
-  {
-    "ID": 94,
-    "Name": "Cramps"
-  },
-  {
-    "ID": 49,
-    "Name": "Cravings"
-  },
-  {
-    "ID": 134,
-    "Name": "Crusting"
-  },
-  {
-    "ID": 260,
-    "Name": "Curvature of the spine"
-  },
-  {
-    "ID": 108,
-    "Name": "Dark urine"
-  },
-  {
-    "ID": 163,
-    "Name": "Decreased urine stream"
-  },
-  {
-    "ID": 165,
-    "Name": "Delayed start to urination"
-  },
-  {
-    "ID": 50,
-    "Name": "Diarrhea"
-  },
-  {
-    "ID": 79,
-    "Name": "Difficult defecation"
-  },
-  {
-    "ID": 126,
-    "Name": "Difficulty in finding words"
-  },
-  {
-    "ID": 98,
-    "Name": "Difficulty in speaking"
-  },
-  {
-    "ID": 93,
-    "Name": "Difficulty in swallowing"
-  },
-  {
-    "ID": 53,
-    "Name": "Difficulty to concentrate"
-  },
-  {
-    "ID": 1007,
-    "Name": "Difficulty to learn"
-  },
-  {
-    "ID": 1005,
-    "Name": "Difficulty with gait"
-  },
-  {
-    "ID": 216,
-    "Name": "Discoloration of nails"
-  },
-  {
-    "ID": 128,
-    "Name": "Disorientation regarding time or place"
-  },
-  {
-    "ID": 989,
-    "Name": "Distended abdomen"
-  },
-  {
-    "ID": 207,
-    "Name": "Dizziness"
-  },
-  {
-    "ID": 71,
-    "Name": "Double vision"
-  },
-  {
-    "ID": 270,
-    "Name": "Double vision, acute-onset"
-  },
-  {
-    "ID": 162,
-    "Name": "Dribbling after urination"
-  },
-  {
-    "ID": 244,
-    "Name": "Drooping eyelid"
-  },
-  {
-    "ID": 43,
-    "Name": "Drowsiness"
-  },
-  {
-    "ID": 273,
-    "Name": "Dry eyes"
-  },
-  {
-    "ID": 272,
-    "Name": "Dry mouth"
-  },
-  {
-    "ID": 151,
-    "Name": "Dry skin"
-  },
-  {
-    "ID": 87,
-    "Name": "Earache"
-  },
-  {
-    "ID": 92,
-    "Name": "Early satiety"
-  },
-  {
-    "ID": 1011,
-    "Name": "Elbow pain"
-  },
-  {
-    "ID": 1006,
-    "Name": "Enlarged calf"
-  },
-  {
-    "ID": 242,
-    "Name": "Eye blinking"
-  },
-  {
-    "ID": 287,
-    "Name": "Eye pain"
-  },
-  {
-    "ID": 33,
-    "Name": "Eye redness"
-  },
-  {
-    "ID": 208,
-    "Name": "Eyelid swelling"
-  },
-  {
-    "ID": 209,
-    "Name": "Eyelids sticking together"
-  },
-  {
-    "ID": 219,
-    "Name": "Face pain"
-  },
-  {
-    "ID": 246,
-    "Name": "Facial paralysis"
-  },
-  {
-    "ID": 970,
-    "Name": "Facial swelling"
-  },
-  {
-    "ID": 153,
-    "Name": "Fast, deepened breathing"
-  },
-  {
-    "ID": 83,
-    "Name": "Fatty defecation"
-  },
-  {
-    "ID": 982,
-    "Name": "Feeling faint"
-  },
-  {
-    "ID": 1014,
-    "Name": "Feeling ill"
-  },
-  {
-    "ID": 76,
-    "Name": "Feeling of foreign body in the eye"
-  },
-  {
-    "ID": 86,
-    "Name": "Feeling of pressure in the ear"
-  },
-  {
-    "ID": 164,
-    "Name": "Feeling of residual urine"
-  },
-  {
-    "ID": 145,
-    "Name": "Feeling of tension in the legs"
-  },
-  {
-    "ID": 11,
-    "Name": "Fever"
-  },
-  {
-    "ID": 995,
-    "Name": "Finger deformity"
-  },
-  {
-    "ID": 1013,
-    "Name": "Finger pain"
-  },
-  {
-    "ID": 1012,
-    "Name": "Finger swelling"
-  },
-  {
-    "ID": 214,
-    "Name": "Flaking skin"
-  },
-  {
-    "ID": 245,
-    "Name": "Flaking skin on the head"
-  },
-  {
-    "ID": 154,
-    "Name": "Flatulence"
-  },
-  {
-    "ID": 255,
-    "Name": "Foot pain"
-  },
-  {
-    "ID": 1002,
-    "Name": "Foot swelling"
-  },
-  {
-    "ID": 125,
-    "Name": "Forgetfulness"
-  },
-  {
-    "ID": 62,
-    "Name": "Formation of blisters on a skin area"
-  },
-  {
-    "ID": 84,
-    "Name": "Foul smelling defecation"
-  },
-  {
-    "ID": 59,
-    "Name": "Frequent urination"
-  },
-  {
-    "ID": 110,
-    "Name": "Genital warts"
-  },
-  {
-    "ID": 152,
-    "Name": "Hair loss"
-  },
-  {
-    "ID": 976,
-    "Name": "Hallucination"
-  },
-  {
-    "ID": 72,
-    "Name": "Halo"
-  },
-  {
-    "ID": 186,
-    "Name": "Hand pain"
-  },
-  {
-    "ID": 148,
-    "Name": "Hand swelling"
-  },
-  {
-    "ID": 80,
-    "Name": "Hard defecation"
-  },
-  {
-    "ID": 184,
-    "Name": "Hardening of the skin"
-  },
-  {
-    "ID": 9,
-    "Name": "Headache"
-  },
-  {
-    "ID": 206,
-    "Name": "Hearing loss"
-  },
-  {
-    "ID": 985,
-    "Name": "Heart murmur"
-  },
-  {
-    "ID": 45,
-    "Name": "Heartburn"
-  },
-  {
-    "ID": 122,
-    "Name": "Hiccups"
-  },
-  {
-    "ID": 993,
-    "Name": "Hip deformity"
-  },
-  {
-    "ID": 196,
-    "Name": "Hip pain"
-  },
-  {
-    "ID": 121,
-    "Name": "Hoarseness"
-  },
-  {
-    "ID": 149,
-    "Name": "Hot flushes"
-  },
-  {
-    "ID": 197,
-    "Name": "Immobilization"
-  },
-  {
-    "ID": 120,
-    "Name": "Impaired balance"
-  },
-  {
-    "ID": 90,
-    "Name": "Impaired hearing"
-  },
-  {
-    "ID": 70,
-    "Name": "Impaired light-dark adaptation"
-  },
-  {
-    "ID": 113,
-    "Name": "Impairment of male potency"
-  },
-  {
-    "ID": 81,
-    "Name": "Incomplete defecation"
-  },
-  {
-    "ID": 131,
-    "Name": "Increased appetite"
-  },
-  {
-    "ID": 262,
-    "Name": "Increased drive"
-  },
-  {
-    "ID": 204,
-    "Name": "Increased salivation"
-  },
-  {
-    "ID": 40,
-    "Name": "Increased thirst"
-  },
-  {
-    "ID": 220,
-    "Name": "Increased touch sensitivity"
-  },
-  {
-    "ID": 39,
-    "Name": "Increased urine quantity"
-  },
-  {
-    "ID": 257,
-    "Name": "Involuntary movements"
-  },
-  {
-    "ID": 986,
-    "Name": "Irregular heartbeat"
-  },
-  {
-    "ID": 65,
-    "Name": "Irregular mole"
-  },
-  {
-    "ID": 73,
-    "Name": "Itching eyes"
-  },
-  {
-    "ID": 88,
-    "Name": "Itching in the ear"
-  },
-  {
-    "ID": 973,
-    "Name": "Itching in the mouth or throat"
-  },
-  {
-    "ID": 96,
-    "Name": "Itching in the nose"
-  },
-  {
-    "ID": 21,
-    "Name": "Itching of skin"
-  },
-  {
-    "ID": 999,
-    "Name": "Itching of the anus"
-  },
-  {
-    "ID": 247,
-    "Name": "Itching on head"
-  },
-  {
-    "ID": 268,
-    "Name": "Itching or burning in the genital area"
-  },
-  {
-    "ID": 194,
-    "Name": "Joint effusion"
-  },
-  {
-    "ID": 198,
-    "Name": "Joint instability"
-  },
-  {
-    "ID": 27,
-    "Name": "Joint pain"
-  },
-  {
-    "ID": 230,
-    "Name": "Joint redness"
-  },
-  {
-    "ID": 193,
-    "Name": "Joint swelling"
-  },
-  {
-    "ID": 47,
-    "Name": "Joylessness"
-  },
-  {
-    "ID": 994,
-    "Name": "Knee deformity"
-  },
-  {
-    "ID": 256,
-    "Name": "Knee pain"
-  },
-  {
-    "ID": 146,
-    "Name": "Leg cramps"
-  },
-  {
-    "ID": 1010,
-    "Name": "Leg pain"
-  },
-  {
-    "ID": 231,
-    "Name": "Leg swelling"
-  },
-  {
-    "ID": 143,
-    "Name": "Leg ulcer"
-  },
-  {
-    "ID": 82,
-    "Name": "Less than 3 defecations per week"
-  },
-  {
-    "ID": 992,
-    "Name": "Limited mobility of the ankle"
-  },
-  {
-    "ID": 167,
-    "Name": "Limited mobility of the back"
-  },
-  {
-    "ID": 178,
-    "Name": "Limited mobility of the fingers"
-  },
-  {
-    "ID": 1000,
-    "Name": "Limited mobility of the hip"
-  },
-  {
-    "ID": 195,
-    "Name": "Limited mobility of the leg"
-  },
-  {
-    "ID": 35,
-    "Name": "Lip swelling"
-  },
-  {
-    "ID": 205,
-    "Name": "Lockjaw"
-  },
-  {
-    "ID": 210,
-    "Name": "Loss of eye lashes"
-  },
-  {
-    "ID": 174,
-    "Name": "Lower abdominal pain"
-  },
-  {
-    "ID": 263,
-    "Name": "Lower-back pain"
-  },
-  {
-    "ID": 261,
-    "Name": "Lump in the breast"
-  },
-  {
-    "ID": 266,
-    "Name": "Malposition of the testicles"
-  },
-  {
-    "ID": 232,
-    "Name": "Marked veins"
-  },
-  {
-    "ID": 235,
-    "Name": "Memory gap"
-  },
-  {
-    "ID": 112,
-    "Name": "Menstruation disorder"
-  },
-  {
-    "ID": 123,
-    "Name": "Missed period"
-  },
-  {
-    "ID": 215,
-    "Name": "Moist and softened skin"
-  },
-  {
-    "ID": 85,
-    "Name": "Mood swings"
-  },
-  {
-    "ID": 983,
-    "Name": "Morning stiffness"
-  },
-  {
-    "ID": 135,
-    "Name": "Mouth pain"
-  },
-  {
-    "ID": 97,
-    "Name": "Mouth ulcers"
-  },
-  {
-    "ID": 177,
-    "Name": "Muscle pain"
-  },
-  {
-    "ID": 119,
-    "Name": "Muscle stiffness"
-  },
-  {
-    "ID": 987,
-    "Name": "Muscle weakness"
-  },
-  {
-    "ID": 252,
-    "Name": "Muscular atrophy in the leg"
-  },
-  {
-    "ID": 202,
-    "Name": "Muscular atrophy of the arm"
-  },
-  {
-    "ID": 168,
-    "Name": "Muscular weakness in the arm"
-  },
-  {
-    "ID": 253,
-    "Name": "Muscular weakness in the leg"
-  },
-  {
-    "ID": 44,
-    "Name": "Nausea"
-  },
-  {
-    "ID": 136,
-    "Name": "Neck pain"
-  },
-  {
-    "ID": 234,
-    "Name": "Neck stiffness"
-  },
-  {
-    "ID": 114,
-    "Name": "Nervousness"
-  },
-  {
-    "ID": 133,
-    "Name": "Night cough"
-  },
-  {
-    "ID": 1004,
-    "Name": "Night sweats"
-  },
-  {
-    "ID": 63,
-    "Name": "Non-healing skin wound"
-  },
-  {
-    "ID": 38,
-    "Name": "Nosebleed"
-  },
-  {
-    "ID": 221,
-    "Name": "Numbness in the arm"
-  },
-  {
-    "ID": 254,
-    "Name": "Numbness in the leg"
-  },
-  {
-    "ID": 200,
-    "Name": "Numbness of the hands"
-  },
-  {
-    "ID": 137,
-    "Name": "Oversensitivity to light"
+var symptomy = [{
+    "ID": 188,"Name": "Abdominal guarding"},{"ID": 10, "Name": "Abdominal pain"},{"ID": 223,"Name": "Abdominal pain associated with menstruation"},{"ID": 984,"Name": "Absence of a pulse"},
+  {"ID": 974,"Name": "Aggressiveness"},{"ID": 981,"Name": "Agitation"},{"ID": 996,"Name": "Ankle deformity"},{"ID": 147,"Name": "Ankle swelling"},{"ID": 238,"Name": "Anxiety"},{"ID": 1009,"Name": "Arm pain"},{"ID": 971,"Name": "Arm swelling",{"ID": 998,"Name": "Back deformity"},
+  {"ID": 104,"Name": "Back pain"},  {   "ID": 180,    "Name": "Black stools"  },  {    "ID": 57,    "Name": "Blackening of vision"  },  {    "ID": 24,    "Name": "Blackhead"
+  },{"ID": 284,"Name": "Bleeding from vagina"},{"ID": 176,"Name": "Bleeding in the conjunctiva of the eye"},{"ID": 48,"Name": "Bloated feeling in the stomach"
+  },{"ID": 190,"Name": "Blood in stool"},{"ID": 233,"Name": "Bloody cough"},{"ID": 991,"Name": "Blue colored skin"},{"ID": 240,"Name": "Blue spot on skin"},{"ID": 77,"Name": "Blurred vision"},{
+    "ID": 239,"Name": "Bold area among hair on the head"},{"ID": 156,"Name": "Bone fracture"},{"ID": 250,"Name": "Breathing-related pains"},{"ID": 979,"Name": "Brittleness of nails"},
+  {"ID": 192,"Name": "Bulging abdominal wall"},{"ID": 75,"Name": "Burning eyes"},{"ID": 46,"Name": "Burning in the throat"},{"ID": 288,"Name": "Burning nose"},{"ID": 107,"Name": "Burning sensation when urinating"}, {"ID": 91,"Name": "Changes in the nails"},
+  {"ID": 170,"Name": "Cheek swelling"},{"ID": 17,"Name": "Chest pain"},{"ID": 31,"Name": "Chest tightness"},{"ID": 175,"Name": "Chills"},{"ID": 218,"Name": "Coarsening of the skin structure"},
+  {"ID": 89,"Name": "Cold feet"},{"ID": 978,"Name": "Cold hands"},{"ID": 139,"Name": "Cold sweats"},{"ID": 15,"Name": "Cough"},{"ID": 228,"Name": "Cough with sputum"},
+  {"ID": 94,"Name": "Cramps"},{"ID": 49,"Name": "Cravings"},{"ID": 134,"Name": "Crusting"},{"ID": 260,"Name": "Curvature of the spine"},{"ID": 108,"Name": "Dark urine"},{"ID": 163,"Name": "Decreased urine stream"},
+  {"ID": 165,"Name": "Delayed start to urination"},{"ID": 50,"Name": "Diarrhea"},{"ID": 79,"Name": "Difficult defecation"},{"ID": 126,"Name": "Difficulty in finding words"},{"ID": 98,"Name": "Difficulty in speaking"},
+  {"ID": 93,"Name": "Difficulty in swallowing"},{"ID": 53,"Name": "Difficulty to concentrate"},{"ID": 1007,"Name": "Difficulty to learn"},{"ID": 1005,"Name": "Difficulty with gait"},{"ID": 216,"Name": "Discoloration of nails"},{"ID": 128,"Name": "Disorientation regarding time or place"},
+  {"ID": 989,"Name": "Distended abdomen"},{"ID": 207,"Name": "Dizziness"},{"ID": 71,"Name": "Double vision"},{"ID": 270,"Name": "Double vision, acute-onset"},{"ID": 162,"Name": "Dribbling after urination"},
+  {"ID": 244,"Name": "Drooping eyelid"},{"ID": 43,"Name": "Drowsiness"},{"ID": 273,"Name": "Dry eyes"},
+  {"ID": 272,"Name": "Dry mouth"},{"ID": 151,"Name": "Dry skin"},{"ID": 87,"Name": "Earache"},{"ID": 92,"Name": "Early satiety"},{"ID": 1011,"Name": "Elbow pain"},{"ID": 1006,"Name": "Enlarged calf"},
+  {"ID": 242,"Name": "Eye blinking"},{"ID": 287,"Name": "Eye pain"},{"ID": 33,"Name": "Eye redness"},{"ID": 208,"Name": "Eyelid swelling"},{"ID": 209,"Name": "Eyelids sticking together"},{"ID": 219,"Name": "Face pain"
+  },{"ID": 246,"Name": "Facial paralysis"},{"ID": 970,"Name": "Facial swelling"},{"ID": 153,"Name": "Fast, deepened breathing"},{"ID": 83,"Name": "Fatty defecation"},{"ID": 982,"Name": "Feeling faint"},{"ID": 1014,"Name": "Feeling ill"},
+  {"ID": 76,"Name": "Feeling of foreign body in the eye"},{"ID": 86,"Name": "Feeling of pressure in the ear"},{"ID": 164,"Name": "Feeling of residual urine"},{"ID": 145,"Name": "Feeling of tension in the legs"},
+  {"ID": 11,"Name": "Fever"},{"ID": 995,"Name": "Finger deformity"},{"ID": 1013,"Name": "Finger pain"},{"ID": 1012,"Name": "Finger swelling"},{"ID": 214,"Name": "Flaking skin"},{"ID": 245,"Name": "Flaking skin on the head"},
+  {"ID": 154,"Name": "Flatulence"},{"ID": 255,"Name": "Foot pain"},{"ID": 1002,"Name": "Foot swelling"},{"ID": 125,"Name": "Forgetfulness"},{"ID": 62,"Name": "Formation of blisters on a skin area"},
+  {"ID": 84,"Name": "Foul smelling defecation"},{"ID": 59,"Name": "Frequent urination"},{"ID": 110,"Name": "Genital warts"},{"ID": 152,"Name": "Hair loss"},{"ID": 976,"Name": "Hallucination"},{"ID": 72,"Name": "Halo"},
+  {"ID": 186,"Name": "Hand pain"},{"ID": 148,"Name": "Hand swelling"},{"ID": 80,"Name": "Hard defecation"},{"ID": 184,"Name": "Hardening of the skin"},{"ID": 9,"Name": "Headache"},{"ID": 206,"Name": "Hearing loss"},{
+    "ID": 985,"Name": "Heart murmur"},{"ID": 45,"Name": "Heartburn"},{"ID": 122,"Name": "Hiccups"}{"ID": 993,"Name": "Hip deformity"},{"ID": 196,"Name": "Hip pain"},{"ID": 121,"Name": "Hoarseness"},
+  {"ID": 149,"Name": "Hot flushes"},{"ID": 197,"Name": "Immobilization"},{"ID": 120,"Name": "Impaired balance"},{"ID": 90,"Name": "Impaired hearing"},{"ID": 70,"Name": "Impaired light-dark adaptation"},{"ID": 113,"Name": "Impairment of male potency"},
+  {"ID": 81,"Name": "Incomplete defecation"},{"ID": 131,"Name": "Increased appetite"},{"ID": 262, "Name": "Increased drive"},{"ID": 204,"Name": "Increased salivation"},{"ID": 40,
+  "Name": "Increased thirst"},{"ID": 220,"Name": "Increased touch sensitivity"},{"ID": 39,"Name": "Increased urine quantity"},{"ID": 257,"Name": "Involuntary movements"},{"ID": 986,
+"Name": "Irregular heartbeat"},{"ID": 65,"Name": "Irregular mole"},{"ID": 73,"Name": "Itching eyes"},{"ID": 88,"Name": "Itching in the ear"},{"ID": 973,"Name": "Itching in the mouth or throat"},
+  {"ID": 96,"Name": "Itching in the nose"},{"ID": 21,"Name": "Itching of skin"},{"ID": 999,"Name": "Itching of the anus"},{"ID": 247,"Name": "Itching on head"},{"ID": 268,"Name": "Itching or burning in the genital area"},
+  {"ID": 194,"Name": "Joint effusion"},{"ID": 198,"Name": "Joint instability"},{"ID": 27,"Name": "Joint pain"},{"ID": 230,"Name": "Joint redness",  {"ID": 193,"Name": "Joint swelling"
+  },  {"ID": 47,"Name": "Joylessness"  },  {"ID": 994,"Name": "Knee deformity"},{"ID": 256,"Name": "Knee pain"},{"ID": 146,"Name": "Leg cramps"},{"ID": 1010,"Name": "Leg pain"},{"ID": 231,
+    "Name": "Leg swelling"},{"ID": 143,"Name": "Leg ulcer"},{"ID": 82,"Name": "Less than 3 defecations per week"},{"ID": 992,"Name": "Limited mobility of the ankle"},{"ID": 167,"Name": "Limited mobility of the back"},
+  {"ID": 178,"Name": "Limited mobility of the fingers"},{"ID": 1000,"Name": "Limited mobility of the hip"},{"ID": 195,"Name": "Limited mobility of the leg"},{"ID": 35,"Name": "Lip swelling"},
+  {"ID": 205,"Name": "Lockjaw"},{"ID": 210,"Name": "Loss of eye lashes"},{"ID": 174,"Name": "Lower abdominal pain"},{"ID": 263,"Name": "Lower-back pain"},{"ID": 261,"Name": "Lump in the breast"
+  },{"ID": 266,"Name": "Malposition of the testicles"},{"ID": 232,"Name": "Marked veins"},{"ID": 235,"Name": "Memory gap"},{"ID": 112,"Name": "Menstruation disorder"},{"ID": 123,"Name": "Missed period"},
+  {"ID": 215,"Name": "Moist and softened skin"},{"ID": 85,"Name": "Mood swings"},{"ID": 983,"Name": "Morning stiffness"},{"ID": 135,"Name": "Mouth pain"},{"ID": 97,"Name": "Mouth ulcers"},{"ID": 177,"Name": "Muscle pain"
+  },{"ID": 119,"Name": "Muscle stiffness"},{"ID": 987,"Name": "Muscle weakness"},{"ID": 252,"Name": "Muscular atrophy in the leg"},{"ID": 202,"Name": "Muscular atrophy of the arm"},{"ID": 168,"Name": "Muscular weakness in the arm"},
+  {"ID": 253,"Name": "Muscular weakness in the leg"},{"ID": 44,"Name": "Nausea"},{"ID": 136,"Name": "Neck pain"},{"ID": 234,"Name": "Neck stiffness"},{"ID": 114,"Name": "Nervousness"
+  },{"ID": 133,"Name": "Night cough"},{"ID": 1004,
+"Name": "Night sweats"},{"ID": 63,"Name": "Non-healing skin wound"},{"ID": 38,"Name": "Nosebleed"},{"ID": 221,"Name": "Numbness in the arm"},{"ID": 254,"Name": "Numbness in the leg"},
+  {"ID": 200,"Name": "Numbness of the hands"},{"ID": 137,"Name": "Oversensitivity to light"
   },
   {
     "ID": 157,
@@ -1199,9 +452,14 @@ var adjectives = ['abdominal pain', 'abnormal facial expressions', 'abscessed to
 
 
 
+       var testQuestions = ["What is your name? (If you would not like to disclose, type 'n/a'.)", "What is your Age?", "What is your gender? (M/F)", "What is your ethnicity?",
+    "What is your height?", "What is your weight?", "What symptoms have you been experiencing?", "How long has this issue been occuring for?", "Are there any other symptoms that you have?",
+    "How would you rate your pain?", "Do you have any family history of illnesses? If so, type the relation and the condition and age of onset. Example: <i>Aunt Breast Cancer, 35</i>", "Is there any other important information you would like to share?"];
+
+    var elements = ["Name", "Age", "Gender", "Ethnicity", "Height", "Weight", "Symptoms", "Issue", "Any-Other", "Pain-Level", "Family History", "Other"]
 
 
-
+var wantName = true;
 var surveyTurnedOn = false;
 var surveyIndex = 0;
 var array = [];
@@ -1422,10 +680,10 @@ function talk() {
 			}
 		}
 
-		
+		var tokens = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImNocmlzdG9waGVyY2h1MDgxMDk4QGdtYWlsLmNvbSIsInJvbGUiOiJVc2VyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvc2lkIjoiMjcwNCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvdmVyc2lvbiI6IjEwOSIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbGltaXQiOiIxMDAiLCJodHRwOi8vZXhhbXBsZS5vcmcvY2xhaW1zL21lbWJlcnNoaXAiOiJCYXNpYyIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbGFuZ3VhZ2UiOiJlbi1nYiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvZXhwaXJhdGlvbiI6IjIwOTktMTItMzEiLCJodHRwOi8vZXhhbXBsZS5vcmcvY2xhaW1zL21lbWJlcnNoaXBzdGFydCI6IjIwMTktMDctMTAiLCJpc3MiOiJodHRwczovL2F1dGhzZXJ2aWNlLnByaWFpZC5jaCIsImF1ZCI6Imh0dHBzOi8vaGVhbHRoc2VydmljZS5wcmlhaWQuY2giLCJleHAiOjE1NjM5OTgwNTIsIm5iZiI6MTU2Mzk5MDg1Mn0.ZDb34cs0kh-Wgt4g90uECYLRDPeh7DsxCkUGLanPYQU";
 
 
-		var apimedicURL = "https://healthservice.priaid.ch/diagnosis?symptoms=[" + verifyArray+ "]&gender=male&year_of_birth=82&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImNocmlzdG9waGVyY2h1MDgxMDk4QGdtYWlsLmNvbSIsInJvbGUiOiJVc2VyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvc2lkIjoiMjcwNCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvdmVyc2lvbiI6IjEwOSIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbGltaXQiOiIxMDAiLCJodHRwOi8vZXhhbXBsZS5vcmcvY2xhaW1zL21lbWJlcnNoaXAiOiJCYXNpYyIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbGFuZ3VhZ2UiOiJlbi1nYiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvZXhwaXJhdGlvbiI6IjIwOTktMTItMzEiLCJodHRwOi8vZXhhbXBsZS5vcmcvY2xhaW1zL21lbWJlcnNoaXBzdGFydCI6IjIwMTktMDctMTAiLCJpc3MiOiJodHRwczovL2F1dGhzZXJ2aWNlLnByaWFpZC5jaCIsImF1ZCI6Imh0dHBzOi8vaGVhbHRoc2VydmljZS5wcmlhaWQuY2giLCJleHAiOjE1NjM3NTM5NzQsIm5iZiI6MTU2Mzc0Njc3NH0.nHQE3gonhgzYibtWbSgzAEDE4y4Oy6GcTyY3lFAJgt4&format=json&language=en-gb";
+		var apimedicURL = "https://healthservice.priaid.ch/diagnosis?symptoms=[" + verifyArray+ "]&gender=male&year_of_birth=82&token=" + tokens + "&format=json&language=en-gb";
 
 
 		if(verifyArray.length == 0){
@@ -1521,75 +779,131 @@ function talk() {
 
    
 
-  } else if(surveyTurnedOn){
-      
+//   } else if(surveyTurnedOn){
+//       var sliderValue = 5;
 
-       var testQuestions = ["What is your name? (If you would not like to disclose, type 'n/a'.)", "What is your Age?", "What is your gender? (M/F)", "What is your ethnicity?",
-    "What is your height?", "What is your weight?", "What symptoms have you been experiencing?", "How long has this issue been occuring for?", "Are there any other symptoms that you have?",
-    "How would you rate your pain?", "Do you have any family history of illnesses? If so, type the relation and the condition and age of onset. Example: <i>Aunt Breast Cancer, 35</i>", "Is there any other important information you would like to share?"];
+//        var testQuestions = ["What is your name? (If you would not like to disclose, type 'n/a'.)", "What is your Age?", "What is your gender? (M/F)", "What is your ethnicity?",
+//     "What is your height?", "What is your weight?", "What symptoms have you been experiencing?", "How long has this issue been occuring for?", "Are there any other symptoms that you have?",
+//     "How would you rate your pain?", "Do you have any family history of illnesses? If so, type the relation and the condition and age of onset. Example: <i>Aunt Breast Cancer, 35</i>", "Is there any other important information you would like to share?"];
 
-    var elements = ["Name", "Age", "Gender", "Ethnicity", "Height", "Weight", "Symptoms", "Issue", "Any-Other", "Pain-Level", "Family History", "Other"]
-    document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + testQuestions[surveyIndex]+ "</div>"  + "<br>";
-    if(surveyIndex >= 0){
-       testAnswers.push([elements[surveyIndex - 1], user]);   
-       if(surveyIndex == 9 && user == "yes"){
+//     var elements = ["Name", "Age", "Gender", "Ethnicity", "Height", "Weight", "Symptoms", "Issue", "Any-Other", "Pain-Level", "Family History", "Other"]
+//     document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + testQuestions[surveyIndex]+ "</div>"  + "<br>";
+//     if(surveyIndex >= 0){
+//       console.log(surveyIndex);
+//        testAnswers.push([elements[surveyIndex - 1], user]);   
+//        if(surveyIndex == 9){
 
-        surveyIndex = 6;
+        
+// var myvar = '<div class = "box">'+
+// '   <center><div id = "value"></div></center>'+
+// ' </div>'+
+// ' <div class = "container">'+
+// '   <input type="range" min = "0" max = "10" value = "5" class = "slider" id = "slider">'+
+// ' </div>'+
+// ' <script type="text/javascript">'+
+// '   var slider = document.getElementById("slider");'+
+// '   var val = document.getElementById("value");'+
+// '   val.innerHTML = slider.value;'+
+// '   slider.oninput = function(){'+
+// '     val.innerHTML = this.value;'+
+// '   }'+
+// ' </script>';
 
-        var myvar = '<div class = "box">'+
-'   <center><div id = "value"></div></center>'+
-' </div>'+
-' <div class = "container">'+
-'   <input type="range" min = "0" max = "10" value = "5" class = "slider" id = "slider">'+
-' </div>'+
-' <script type="text/javascript">'+
-'   var slider = document.getElementById("slider");'+
-'   var val = document.getElementById("value");'+
-'   val.innerHTML = slider.value;'+
-'   slider.oninput = function(){'+
-'     val.innerHTML = this.value;'+
-'   }'+
-' </script>';
   
 
+  
+ 
 
 
 
+// document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + myvar + "</div>" +   "<br><br>";
+// console.log(surveyIndex + " " + user);
+//  var slider = document.getElementById('slider').value;
+//           console.log("Value: " + sliderValue);
 
-document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + myvar + "</div>" +   "<br><br>";
-       } else if(surveyIndex == 6){
-        if(!sixthSense){
-            for(var i = 0; i < symptomy.length; i++){
-      document.getElementById("theDataList").innerHTML += "<option value =\"" + symptomy[i].Name + "\">";
-    }
 
-    for(var i = 0; i < bodyParts.length; i++){
-      document.getElementById("theDataList").innerHTML += "<option value =\"" + bodyParts[i] + "\">";
-    }
+// if(user == "yes"){
+//    var slider = document.getElementById('slider').value;
+//           console.log("Value: " + sliderValue);
+//   surveyIndex = 6;
+// } else {
+//    var slider = document.getElementById('slider').value;
+//    sliderValue = slider;
+//           console.log("Value wo yes: " + sliderValue);
+//   surveyIndex++;
+// }
 
-    for(var i = 0; i < adjectives.length; i++){
-      document.getElementById("theDataList").innerHTML += "<option value =\"" + adjectives[i] + "\">";
-    }
-        }
+//        } else if (surveyIndex == 10){
+//         surveyIndex++;
+//         slider.value = sliderValue;
+//         var slider = document.getElementById('slider').value;
+//           console.log("Value of slider : " + sliderValue);
+
+//        }
       
-    sixthSense = true;
+//         else if(surveyIndex == 6){
+//         if(!sixthSense){
+//             for(var i = 0; i < symptomy.length; i++){
+//       document.getElementById("theDataList").innerHTML += "<option value =\"" + symptomy[i].Name + "\">";
+//     }
 
-    surveyIndex++;
-       } 
+//     for(var i = 0; i < bodyParts.length; i++){
+//       document.getElementById("theDataList").innerHTML += "<option value =\"" + bodyParts[i] + "\">";
+//     }
 
-       else {
-        surveyIndex++;       
-      }
-    }
+//     for(var i = 0; i < adjectives.length; i++){
+//       document.getElementById("theDataList").innerHTML += "<option value =\"" + adjectives[i] + "\">";
+//     }
+//         }
+      
+//     sixthSense = true;
 
-    if(surveyIndex == testQuestions.length + 1){
-      testAnswers.shift();
-      console.log(testAnswers);
-    }
+//     surveyIndex++;
+//        } 
+
+//        else {
+//         surveyIndex++;       
+//       }
+//     }
+
+//     if(surveyIndex == testQuestions.length + 1){
+//       testAnswers.shift();
+//       console.log(testAnswers);
+
+//      var firebaseConfig = {
+//     apiKey: "AIzaSyBPvSqm_MaQhjpK7z0SUbn2ZbxD12MI-9k",
+//     authDomain: "summerproject1-d1d7c.firebaseapp.com",
+//     databaseURL: "https://summerproject1-d1d7c.firebaseio.com",
+//     projectId: "summerproject1-d1d7c",
+//     storageBucket: "",
+//     messagingSenderId: "634559623742",
+//     appId: "1:634559623742:web:882b27c70b1247c2"
+//   };
+//   firebase.initializeApp(firebaseConfig);
+//   var database = firebase.database();
+//   var ref = database.ref(username);
+//      var data = {
+//     testAnswers
+//   };
+
+//    ref.once("value")
+//     .then(function(snapshot) {
+
+//         ref.push(data);
+//         alert("Data Pushed. Congrats :D");
+// });
+
+//     }
 
    
     
-  }
+//   }
+
+else if (wantName){
+
+}
+
+
 	else {
 		var neutral = "I'm sorry I can't parse your text properly Please try typing in one of the options, shown in the welcome statement.";
 		document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(neutral) + "</div><br>";
