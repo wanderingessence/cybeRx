@@ -1521,14 +1521,25 @@ function talk() {
    
 
   } else if(surveyTurnedOn){
-   
+      
+
        var testQuestions = ["What is your name? (If you would not like to disclose, type 'n/a'.)", "What is your Age?", "What is your gender? (M/F)", "What is your ethnicity?",
     "What is your height?", "What is your weight?", "What symptoms have you been experiencing?", "How long has this issue been occuring for?", "Are there any other symptoms that you have?",
     "How would you rate your pain?", "Do you have any family history of illnesses? If so, type the relation and the condition and age of onset. Example: <i>Aunt Breast Cancer, 35</i>", "Is there any other important information you would like to share?"];
 
+    var elements = ["Name", "Age", "Gender", "Ethnicity", "Height", "Weight", "Symptoms", "Issue", "Other", "Pain-Level", "Family History", "Other"]
     document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + testQuestions[surveyIndex]+ "</div>"  + "<br>";
-    testAnswers.push(user);
-    if(surveyIndex == testQuestions.length - 1){
+    if(surveyIndex > 0){
+       testAnswers.push([elements[surveyIndex - 1], user]);   
+    }
+   
+    console.log(surveyIndex);
+    if(surveyIndex == 8 && user == "yes"){
+      surveyIndex = 5;
+    }
+
+
+    if(surveyIndex == testQuestions.length){
       console.log(testAnswers);
     } else {
       surveyIndex++;
