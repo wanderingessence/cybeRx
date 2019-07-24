@@ -1193,7 +1193,7 @@ var adjectives = ['abdominal pain', 'abnormal facial expressions', 'abscessed to
 , 'vomiting', 'vomiting blood', 'watery', 'watery eye', 'weight gain', 'weakness', 'weight loss', 'west nile virus', 'wheezing', 'wet', 'whooping cough', 
 'pertussis', 'wrist pain', 'yawning', 'yawn', 'zika virus', 'addiction', 'acne', 'pimples', 'pimple', 'dizzy', 'dry mouth', 'sleepy', 'shortness of breath', 'thirsty',
 'tired', 'weak', 'see', 'sleep', 'smell', 'speak', 'watery bowel', 'scratch', 'sweat', 'walk', 'write', 'aspergers', 'psychosis', 'body dysmorphic disorder', 'mood regulation', 
-'thought disorder', 'obsessive compulsive disorder'
+'thought disorder', 'obsessive compulsive disorder', 'erectile dysfunction'
 ];
 
 
@@ -1206,6 +1206,7 @@ var surveyTurnedOn = false;
 var surveyIndex = 0;
 var array = [];
 var testAnswers = [];
+var sixthSense = false;
 var response = "";
 var senorita = "wow my name is mary and i like pie particularly wolfs pie and shepards pie and since this thing is so damn annoying it demands a boatload of text to be happy.";
 function getLocation(x) {
@@ -1527,23 +1528,66 @@ function talk() {
     "What is your height?", "What is your weight?", "What symptoms have you been experiencing?", "How long has this issue been occuring for?", "Are there any other symptoms that you have?",
     "How would you rate your pain?", "Do you have any family history of illnesses? If so, type the relation and the condition and age of onset. Example: <i>Aunt Breast Cancer, 35</i>", "Is there any other important information you would like to share?"];
 
-    var elements = ["Name", "Age", "Gender", "Ethnicity", "Height", "Weight", "Symptoms", "Issue", "Other", "Pain-Level", "Family History", "Other"]
+    var elements = ["Name", "Age", "Gender", "Ethnicity", "Height", "Weight", "Symptoms", "Issue", "Any-Other", "Pain-Level", "Family History", "Other"]
     document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + testQuestions[surveyIndex]+ "</div>"  + "<br>";
-    if(surveyIndex > 0){
+    if(surveyIndex >= 0){
        testAnswers.push([elements[surveyIndex - 1], user]);   
-    }
-   
-    console.log(surveyIndex);
-    if(surveyIndex == 8 && user == "yes"){
-      surveyIndex = 5;
-    }
+       if(surveyIndex == 9 && user == "yes"){
+
+        surveyIndex = 6;
+
+        var myvar = '<div class = "box">'+
+'   <center><div id = "value"></div></center>'+
+' </div>'+
+' <div class = "container">'+
+'   <input type="range" min = "0" max = "10" value = "5" class = "slider" id = "slider">'+
+' </div>'+
+' <script type="text/javascript">'+
+'   var slider = document.getElementById("slider");'+
+'   var val = document.getElementById("value");'+
+'   val.innerHTML = slider.value;'+
+'   slider.oninput = function(){'+
+'     val.innerHTML = this.value;'+
+'   }'+
+' </script>';
+  
 
 
-    if(surveyIndex == testQuestions.length){
+
+
+
+document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + myvar + "</div>" +   "<br><br>";
+       } else if(surveyIndex == 6){
+        if(!sixthSense){
+            for(var i = 0; i < symptomy.length; i++){
+      document.getElementById("theDataList").innerHTML += "<option value =\"" + symptomy[i].Name + "\">";
+    }
+
+    for(var i = 0; i < bodyParts.length; i++){
+      document.getElementById("theDataList").innerHTML += "<option value =\"" + bodyParts[i] + "\">";
+    }
+
+    for(var i = 0; i < adjectives.length; i++){
+      document.getElementById("theDataList").innerHTML += "<option value =\"" + adjectives[i] + "\">";
+    }
+        }
+      
+    sixthSense = true;
+
+    surveyIndex++;
+       } 
+
+       else {
+        surveyIndex++;       
+      }
+    }
+
+    if(surveyIndex == testQuestions.length + 1){
+      testAnswers.shift();
       console.log(testAnswers);
-    } else {
-      surveyIndex++;
     }
+
+   
     
   }
 	else {

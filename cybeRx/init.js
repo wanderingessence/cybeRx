@@ -50,9 +50,10 @@ var errorPresent = false;
           // [END_EXCLUDE]
         });
 
-      if(!errorPresent){
-        document.location.href = "chat.html?user=" + username;
-      }
+      var user = firebase.auth().currentUser;
+
+   document.location.href = "chat.html?id=" + user.uid;
+        
 
   }
   function signup(){
@@ -99,7 +100,9 @@ firebase.auth().createUserWithEmailAndPassword(username, password).catch(functio
   if(error){
     console.log(errorCode + " " + errorMessage);
   }
-   document.location.href = "chat.html?user=" + username;
+  var user = firebase.auth().currentUser;
+
+   document.location.href = "chat.html?id=" + user.uid;
 });
   }
 
