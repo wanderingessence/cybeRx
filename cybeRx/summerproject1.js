@@ -1205,6 +1205,7 @@ var adjectives = ['abdominal pain', 'abnormal facial expressions', 'abscessed to
 var surveyTurnedOn = false;
 var surveyIndex = 0;
 var array = [];
+var testAnswers = [];
 var response = "";
 var senorita = "wow my name is mary and i like pie particularly wolfs pie and shepards pie and since this thing is so damn annoying it demands a boatload of text to be happy.";
 function getLocation(x) {
@@ -1282,7 +1283,13 @@ var type12 = false;
 var is2 = false;
 var query = "";
 getLocation(document.getElementById("userBox"));
+function gotoBottom(id){
+   var element = document.getElementById(id);
+   element.scrollTop = element.scrollHeight + 5000;
+}
 function talk() {
+ 
+
   var username =  parent.document.URL.substring(parent.document.URL.indexOf('=') + 1, parent.document.URL.length);
   console.log(username);
 	var user = document.getElementById("userBox").value;
@@ -1520,40 +1527,13 @@ function talk() {
     "How would you rate your pain?", "Do you have any family history of illnesses? If so, type the relation and the condition and age of onset. Example: <i>Aunt Breast Cancer, 35</i>", "Is there any other important information you would like to share?"];
 
     document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + testQuestions[surveyIndex]+ "</div>"  + "<br>";
-    var z = surveyIndex;
-    if(z == 0){
-
-    } else if (z == 1){
-
-    } else if (z == 2){
-      
-    } else if (z == 3){
-      
-    } else if (z == 4){
-      
-    } else if (z == 5){
-      
-    } else if (z == 6){
-      
-    } else if (z == 7){
-      
-    } else if (z == 8){
-      
-    } else if (z == 9){
-      
-    } else if (z == 10){
-      
-    } else if (z == 11){
-      
+    testAnswers.push(user);
+    if(surveyIndex == testQuestions.length - 1){
+      console.log(testAnswers);
+    } else {
+      surveyIndex++;
     }
-    surveyIndex++;
-
-
-
-
-    user = document.getElementById("userBox").value;
-    console.log(user);
-
+    
   }
 	else {
 		var neutral = "I'm sorry I can't parse your text properly Please try typing in one of the options, shown in the welcome statement.";
@@ -1561,4 +1541,6 @@ function talk() {
 		userChat.push(characterBreak(user)) + "<br><br>";
 		botChat.push("I'm sorry I cannot interpret your input properly.<br> Please try typing in one of the options, shown in the welcome statement. <br>");
 	}
+
+   gotoBottom("chat");
 } 

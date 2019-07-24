@@ -247,6 +247,7 @@ z-index: -5;
 #chat{
   overflow-y: scroll;
   background-color:  #F8F8F8;
+  margin-bottom: 50px;
 
 }
 
