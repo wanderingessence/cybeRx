@@ -139,9 +139,20 @@ var adjectives = ['abdominal pain', 'abnormal facial expressions', 'abscessed to
 
 var wantStart = false;
 var wantName = false;
+var wantGender = false;
+var wantEthnicity = false;
+var wantHeight = false;
+var wantWeight = false;
+var wantSymptoms = false;
+var wantIssue = false;
+var wantMorePain = false;
+var wantPain = false;
+var wantFamilyHistory = false;
+var wantOther = false;
+var testComplete = false;
 
 
-
+var isFull = false;
 var surveyTurnedOn = false;
 var surveyIndex = 0;
 var array = [];
@@ -582,12 +593,133 @@ function talk() {
     
 //   }
 
+
+//        var testQuestions = ["What is your name? (If you would not like to disclose, type 'n/a'.)", "What is your Age?", "What is your gender? (M/F)", "What is your ethnicity?",
+//     "What is your height?", "What is your weight?", "What symptoms have you been experiencing?", "How long has this issue been occuring for?", "Are there any other symptoms that you have?",
+//     "How would you rate your pain?", "Do you have any family history of illnesses? If so, type the relation and the condition and age of onset. Example: <i>Aunt Breast Cancer, 35</i>", "Is there any other important information you would like to share?"];
+
+//     var elements = ["Name", "Age", "Gender", "Ethnicity", "Height", "Weight", "Symptoms", "Issue", "Any-Other", "Pain-Level", "Family History", "Other"]
+
+
+// var wantStart = false;
+// var wantName = false;
+// var wantGender = false;
+// var wantEthnicity = false;
+// var wantHeight = false;
+// var wantWeight = false;
+// var wantSymptoms = false;
+// var wantIssue = false;
+// var wantMorePain = false;
+// var wantPain = false;
+// var wantFamilyHistory = false;
+// var wantOther = false;
+
+
 else if (wantStart){
-  var nameQuestions = "What is your name?"
-  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(nameQuestions) + "</div><br>";
+  var question = testQuestions[0];
+  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + "</div><br>";
+  wantStart = false;
+  wantName = true;
 
 } else if(wantName){
+  var question = testQuestions[1];
+  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + "</div><br>";
+  wantName = false;
+  wantGender = true;
+} else if(wantGender){
+  var question = testQuestions[2];
+  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + "</div><br>";
+  wantGender = false;
+  wantEthnicity = true;
+} else if(wantEthnicity){
+  var question = testQuestions[3];
+  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + "</div><br>";
+  wantEthnicity = false;
+  wantHeight = true;
+} else if(wantHeight){
+  var question = testQuestions[4];
+  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + "</div><br>";
+  wantHeight = false;
+  wantWeight = true;
+} else if(wantWeight){
+  var question = testQuestions[5];
+  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + "</div><br>";
+  wantWeight = false;
+  wantSymptoms = true;
+} else if(wantSymptoms){
+  var question = testQuestions[6];
+  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + "</div><br>";
 
+  if(!isFull){
+    for(var i = 0; i < symptomy.length; i++){
+      document.getElementById("theDataList").innerHTML += "<option value =\"" + symptomy[i].Name + "\">";
+    }
+    for(var i = 0; i < bodyParts.length; i++){
+      document.getElementById("theDataList").innerHTML += "<option value =\"" + bodyParts[i] + "\">";
+    }
+    for(var i = 0; i < adjectives.length; i++){
+      document.getElementById("theDataList").innerHTML += "<option value =\"" + adjectives[i] + "\">";
+    }
+    isFull = true;
+  }
+    
+  wantSymptoms = false;
+  wantIssue = true;
+} else if(wantIssue){
+  var question = testQuestions[7];
+  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + "</div><br>";
+  wantIssue = false;
+  wantMorePain = true; 
+}else if(wantMorePain){
+  var question = testQuestions[8];
+  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + "</div><br>";
+  if(user == "yes"){
+    console.log("You want more pain!");
+    wantSymptoms = true;
+    wantMorePain = false;
+  }
+
+   if(user == "no"){
+    console.log("You don't want more pain!");
+
+    wantPain = true;
+    wantMorePain = false;
+  }  
+} else if(wantPain){
+   var question = testQuestions[9];
+   var myvar = '<div class = "box">'+
+'   <center><div id = "value"></div></center>'+
+' </div>'+
+' <div class = "container">'+
+'   <input type="range" min = "0" max = "10" value = "5" class = "slider" id = "slider">'+
+' </div>'+
+' <script type="text/javascript">'+
+'   var slider = document.getElementById("slider");'+
+'   var val = document.getElementById("value");'+
+'   val.innerHTML = slider.value;'+
+'   slider.oninput = function(){'+
+'     val.innerHTML = this.value;'+
+'   }'+
+' </script>';
+  
+
+
+  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + myvar + "</div><br>";
+  wantPain = false;
+  wantFamilyHistory = true;
+} else if(wantFamilyHistory){
+  var question = testQuestions[10];
+  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + "</div><br>";
+   wantFamilyHistory = false;
+  wantOther = true;
+} else if(wantOther){
+  var question = testQuestions[11];
+  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + "</div><br>";
+  wantOther = false;
+  testComplete = true;
+} else if(testComplete){
+   document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + "Test Complete!" + "</div><br>";
+   testComplete = false;
 }
 
 
