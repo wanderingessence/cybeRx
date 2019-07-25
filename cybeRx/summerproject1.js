@@ -69,6 +69,7 @@ var bodyParts = ['abdomen', 'face', 'tooth', 'anus', 'back',' mouth', 'skin',
 'armpit', 'eye'
 ];
 
+ var painValue = 5;
 
 
 var adjectives = ['abdominal pain', 'abnormal facial expressions', 'abscessed tooth', 'orthosis',
@@ -135,6 +136,8 @@ var adjectives = ['abdominal pain', 'abnormal facial expressions', 'abscessed to
     "How would you rate your pain?", "Do you have any family history of illnesses? If so, type the relation and the condition and age of onset. Example: <i>Aunt Breast Cancer, 35</i>", "Is there any other important information you would like to share?"];
 
     var elements = ["Name", "Age", "Gender", "Ethnicity", "Height", "Weight", "Symptoms", "Issue", "Any-Other", "Pain-Level", "Family History", "Other"]
+    var AnswerArray = [];
+    var queue = []; //make a queue containing the user responses
 
 
 var wantStart = false;
@@ -159,6 +162,7 @@ var array = [];
 var testAnswers = [];
 var sixthSense = false;
 var response = "";
+var painValue = 0;
 var senorita = "wow my name is mary and i like pie particularly wolfs pie and shepards pie and since this thing is so damn annoying it demands a boatload of text to be happy.";
 function getLocation(x) {
 	if (navigator.geolocation) {
@@ -184,8 +188,7 @@ function diCey(a){
 function diCey2(a){
 	alert(bioArray2[a]);
 }
-userChat = [];
-botChat = [];
+
 function characterBreak(str){
 	var final = "";
 	var char = 0;
@@ -234,12 +237,25 @@ var type11 = false;
 var type12 = false;
 var is2 = false;
 var query = "";
+
+
+ var want1 = false;
+ var want2 = false;
+ var want3 = false;
+ var want4 = false;
+ var want5 = false;
+ var want6 = false;
+ var want7 = false;
+
+
+
 getLocation(document.getElementById("userBox"));
 function gotoBottom(id){
    var element = document.getElementById(id);
    element.scrollTop = element.scrollHeight + 5000;
 }
 function talk() {
+
  
 
   var username =  parent.document.URL.substring(parent.document.URL.indexOf('=') + 1, parent.document.URL.length);
@@ -249,21 +265,15 @@ function talk() {
 	document.getElementById("chat").innerHTML += "<div id = \"youLog\" class = \"chatting\">" + characterBreak(user) +  "</div>" + parseBreak(user) + "<br>";
 	if (user == 1) {
 		var string = "Which doctor are you looking for?<br> Press 11 if you are looking for a specific name. <br>ex. <i>David Smith</i><br>Press 12 if you are looking for a specific type of practicioner.<br> ex. <i>Cardiologist near me</i>"
-		document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + string + "</div><br><br>";
-		userChat.push(user);
-		botChat.push(string);
+		document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + string + "</div><br><br>";;
 	} else if(user == 11){
 		var string = "Type in the name of the practitioner you are searching for."
 		document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + string + "</div><br>";
-		userChat.push(user);
-		botChat.push(string);
 		type11 = true;
 	} else if(user == 12){
 		var string = "What type of practicioner are you looking for?"
 		document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + string + "</div><br>";
 		query = user;
-		userChat.push(user);
-		botChat.push(string);
 		type12 = true;
 	}
 	else if(type11 == true){
@@ -292,8 +302,6 @@ function talk() {
 				}
 				info += "<br><br><button class = \"description\" onclick = say()"   +  ">View Description </button>";
 				document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + info + "</div>" + parseBreak(info) +  "<br><br>";
-				userChat.push(characterBreak(user));
-				botChat.push(characterBreak(info));
 
 			});
 	} else if(type12 == true){
@@ -326,8 +334,6 @@ function talk() {
 					}
 					info += "<br><br><button class = \"description\" onclick = diCey(" + i + ")"   +  ">View Description </button>";
 					document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + info + "</div>"  + "<br><br><br><br>";
-					userChat.push(characterBreak(user));
-					botChat.push(characterBreak(info));
 				}
 			});
 	} else if(user == 2){
@@ -420,8 +426,6 @@ function talk() {
 					}
 					info += "<br><br><button class = \"description\" onclick = diCey2(" + i + ")"   +  ">View Description </button>";
 					document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + info + parseBreak(info) + "</div>"  + "<br><br>";
-					userChat.push(characterBreak(user));
-					botChat.push(characterBreak(info));
 				}
 			});
 
@@ -468,267 +472,103 @@ function talk() {
 	} else if (user == 3){
     var testString = "Type any key if you can start the assessment.";
       document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + testString + parseBreak(testString) + "</div>"  + "<br><br>";
-      surveyTurnedOn = true;
       wantStart = true;
-}
-   
-
-//   } else if(surveyTurnedOn){
-//       var sliderValue = 5;
-
-//        var testQuestions = ["What is your name? (If you would not like to disclose, type 'n/a'.)", "What is your Age?", "What is your gender? (M/F)", "What is your ethnicity?",
-//     "What is your height?", "What is your weight?", "What symptoms have you been experiencing?", "How long has this issue been occuring for?", "Are there any other symptoms that you have?",
-//     "How would you rate your pain?", "Do you have any family history of illnesses? If so, type the relation and the condition and age of onset. Example: <i>Aunt Breast Cancer, 35</i>", "Is there any other important information you would like to share?"];
-
-//     var elements = ["Name", "Age", "Gender", "Ethnicity", "Height", "Weight", "Symptoms", "Issue", "Any-Other", "Pain-Level", "Family History", "Other"]
-//     document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + testQuestions[surveyIndex]+ "</div>"  + "<br>";
-//     if(surveyIndex >= 0){
-//       console.log(surveyIndex);
-//        testAnswers.push([elements[surveyIndex - 1], user]);   
-//        if(surveyIndex == 9){
-
-        
-// var myvar = '<div class = "box">'+
-// '   <center><div id = "value"></div></center>'+
-// ' </div>'+
-// ' <div class = "container">'+
-// '   <input type="range" min = "0" max = "10" value = "5" class = "slider" id = "slider">'+
-// ' </div>'+
-// ' <script type="text/javascript">'+
-// '   var slider = document.getElementById("slider");'+
-// '   var val = document.getElementById("value");'+
-// '   val.innerHTML = slider.value;'+
-// '   slider.oninput = function(){'+
-// '     val.innerHTML = this.value;'+
-// '   }'+
-// ' </script>';
-
-  
-
-  
- 
-
-
-
-// document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + myvar + "</div>" +   "<br><br>";
-// console.log(surveyIndex + " " + user);
-//  var slider = document.getElementById('slider').value;
-//           console.log("Value: " + sliderValue);
-
-
-// if(user == "yes"){
-//    var slider = document.getElementById('slider').value;
-//           console.log("Value: " + sliderValue);
-//   surveyIndex = 6;
-// } else {
-//    var slider = document.getElementById('slider').value;
-//    sliderValue = slider;
-//           console.log("Value wo yes: " + sliderValue);
-//   surveyIndex++;
-// }
-
-//        } else if (surveyIndex == 10){
-//         surveyIndex++;
-//         slider.value = sliderValue;
-//         var slider = document.getElementById('slider').value;
-//           console.log("Value of slider : " + sliderValue);
-
-//        }
-      
-//         else if(surveyIndex == 6){
-//         if(!sixthSense){
-//             for(var i = 0; i < symptomy.length; i++){
-//       document.getElementById("theDataList").innerHTML += "<option value =\"" + symptomy[i].Name + "\">";
-//     }
-
-//     for(var i = 0; i < bodyParts.length; i++){
-//       document.getElementById("theDataList").innerHTML += "<option value =\"" + bodyParts[i] + "\">";
-//     }
-
-//     for(var i = 0; i < adjectives.length; i++){
-//       document.getElementById("theDataList").innerHTML += "<option value =\"" + adjectives[i] + "\">";
-//     }
-//         }
-      
-//     sixthSense = true;
-
-//     surveyIndex++;
-//        } 
-
-//        else {
-//         surveyIndex++;       
-//       }
-//     }
-
-//     if(surveyIndex == testQuestions.length + 1){
-//       testAnswers.shift();
-//       console.log(testAnswers);
-
-//      var firebaseConfig = {
-//     apiKey: "AIzaSyBPvSqm_MaQhjpK7z0SUbn2ZbxD12MI-9k",
-//     authDomain: "summerproject1-d1d7c.firebaseapp.com",
-//     databaseURL: "https://summerproject1-d1d7c.firebaseio.com",
-//     projectId: "summerproject1-d1d7c",
-//     storageBucket: "",
-//     messagingSenderId: "634559623742",
-//     appId: "1:634559623742:web:882b27c70b1247c2"
-//   };
-//   firebase.initializeApp(firebaseConfig);
-//   var database = firebase.database();
-//   var ref = database.ref(username);
-//      var data = {
-//     testAnswers
-//   };
-
-//    ref.once("value")
-//     .then(function(snapshot) {
-
-//         ref.push(data);
-//         alert("Data Pushed. Congrats :D");
-// });
-
-//     }
-
-   
-    
-//   }
-
-
-//        var testQuestions = ["What is your name? (If you would not like to disclose, type 'n/a'.)", "What is your Age?", "What is your gender? (M/F)", "What is your ethnicity?",
-//     "What is your height?", "What is your weight?", "What symptoms have you been experiencing?", "How long has this issue been occuring for?", "Are there any other symptoms that you have?",
-//     "How would you rate your pain?", "Do you have any family history of illnesses? If so, type the relation and the condition and age of onset. Example: <i>Aunt Breast Cancer, 35</i>", "Is there any other important information you would like to share?"];
-
-//     var elements = ["Name", "Age", "Gender", "Ethnicity", "Height", "Weight", "Symptoms", "Issue", "Any-Other", "Pain-Level", "Family History", "Other"]
-
-
-// var wantStart = false;
-// var wantName = false;
-// var wantGender = false;
-// var wantEthnicity = false;
-// var wantHeight = false;
-// var wantWeight = false;
-// var wantSymptoms = false;
-// var wantIssue = false;
-// var wantMorePain = false;
-// var wantPain = false;
-// var wantFamilyHistory = false;
-// var wantOther = false;
-
-
-else if (wantStart){
-  var question = testQuestions[0];
-  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + "</div><br>";
+} else if (wantStart){
+  var question = "What is your name?"
+  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + question + parseBreak(question) + "</div>"  + "<br><br>";
+    want1 = true;
   wantStart = false;
-  wantName = true;
+} else if (want1){
+    //push the name to the queue
+   queue.push({"Name": user});
+  console.log(queue);
+  var question = "What is your age?";
+   document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + question + parseBreak(question) + "</div>"  + "<br><br>";
+   want1 = false;
+   want2 = true;
+} else if (want2 == true){
+  //push the age to the queue 
+  queue.push({"Age": user});
+  console.log(queue);
+  var question = "What is your gender (M/F)?";
+  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + question + parseBreak(question) + "</div>"  + "<br><br>";
+  want2 = false;
+  want3 = true;
+} else if (want3 == true){
+  //push the gender to the queue 
+  queue.push({"Age": user});
+  console.log(queue);
+  var question = "What is your ethnicity?";
+  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + question + parseBreak(question) + "</div>"  + "<br><br>";
+  want3 = false;
+  want4 = true;
+} else if (want4 == true){
+  //push the gender to the queue 
+  queue.push({"Ethnicity": user});
+  console.log(queue);
+  var question = "What is your height?";
+  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + question + parseBreak(question) + "</div>"  + "<br><br>";
+  want4= false;
+  want5 = true;
+} else if (want5 == true){
+  //push the gender to the queue 
+  queue.push({"Height": user});
+  console.log(queue);
+  var question = "What is your weight?";
+  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + question + parseBreak(question) + "</div>"  + "<br><br>";
+  want5= false;
+  want6 = true;
+} else if (want6 == true){
+  //push the gender to the queue 
+  queue.push({"Weight": user});
+  console.log(queue);
+  var question = "What is your symptom?";
+  var symString = "";
 
-} else if(wantName){
-  var question = testQuestions[1];
-  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + "</div><br>";
-  wantName = false;
-  wantGender = true;
-} else if(wantGender){
-  var question = testQuestions[2];
-  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + "</div><br>";
-  wantGender = false;
-  wantEthnicity = true;
-} else if(wantEthnicity){
-  var question = testQuestions[3];
-  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + "</div><br>";
-  wantEthnicity = false;
-  wantHeight = true;
-} else if(wantHeight){
-  var question = testQuestions[4];
-  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + "</div><br>";
-  wantHeight = false;
-  wantWeight = true;
-} else if(wantWeight){
-  var question = testQuestions[5];
-  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + "</div><br>";
-  wantWeight = false;
-  wantSymptoms = true;
-} else if(wantSymptoms){
-  var question = testQuestions[6];
-  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + "</div><br>";
+var textBoxAdd = "<div class = \"response2\"><input id=\"userBox2\" type=\"text\" list=\"theDataList2\" placeholder = \"What seems to be bothering you?\" >";
 
-  if(!isFull){
-    for(var i = 0; i < symptomy.length; i++){
-      document.getElementById("theDataList").innerHTML += "<option value =\"" + symptomy[i].Name + "\">";
-    }
-    for(var i = 0; i < bodyParts.length; i++){
-      document.getElementById("theDataList").innerHTML += "<option value =\"" + bodyParts[i] + "\">";
-    }
-    for(var i = 0; i < adjectives.length; i++){
-      document.getElementById("theDataList").innerHTML += "<option value =\"" + adjectives[i] + "\">";
-    }
-    isFull = true;
-  }
-    
-  wantSymptoms = false;
-  wantIssue = true;
-} else if(wantIssue){
-  var question = testQuestions[7];
-  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + "</div><br>";
-  wantIssue = false;
-  wantMorePain = true; 
-}else if(wantMorePain){
-  var question = testQuestions[8];
-  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + "</div><br>";
-  if(user == "yes"){
-    console.log("You want more pain!");
-    wantSymptoms = true;
-    wantMorePain = false;
-  }
+  var dataList = "<datalist id = \"theDataList2\"></datalist>"
 
-   if(user == "no"){
-    console.log("You don't want more pain!");
-
-    wantPain = true;
-    wantMorePain = false;
-  }  
-} else if(wantPain){
-   var question = testQuestions[9];
-   var myvar = '<div class = "box">'+
-'   <center><div id = "value"></div></center>'+
-' </div>'+
-' <div class = "container">'+
-'   <input type="range" min = "0" max = "10" value = "5" class = "slider" id = "slider">'+
-' </div>'+
-' <script type="text/javascript">'+
-'   var slider = document.getElementById("slider");'+
-'   var val = document.getElementById("value");'+
-'   val.innerHTML = slider.value;'+
-'   slider.oninput = function(){'+
-'     val.innerHTML = this.value;'+
-'   }'+
-' </script>';
+  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + question + parseBreak(question) + "<br><br>" + textBoxAdd + dataList + "</div></div>"  + "<br><br>";
   
 
+   for(var i = 0; i < symptomy.length; i++){
+      document.getElementById("theDataList2").innerHTML += "<option value =\"" + symptomy[i].Name + "\">";
+    }
 
-  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + myvar + "</div><br>";
-  wantPain = false;
-  wantFamilyHistory = true;
-} else if(wantFamilyHistory){
-  var question = testQuestions[10];
-  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + "</div><br>";
-   wantFamilyHistory = false;
-  wantOther = true;
-} else if(wantOther){
-  var question = testQuestions[11];
-  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + "</div><br>";
-  wantOther = false;
-  testComplete = true;
-} else if(testComplete){
-   document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + "Test Complete!" + "</div><br>";
-   testComplete = false;
+  want6= false;
+  want7 = true;
 }
+   
+   
+   
+
 
 
 	else {
+
+  //   var usernameyy =  parent.document.URL.substring(parent.document.URL.indexOf('=') + 1, parent.document.URL.length);
+  //    var firebaseConfig = {
+  //   apiKey: "AIzaSyBPvSqm_MaQhjpK7z0SUbn2ZbxD12MI-9k",
+  //   authDomain: "summerproject1-d1d7c.firebaseapp.com",
+  //   databaseURL: "https://summerproject1-d1d7c.firebaseio.com",
+  //   projectId: "summerproject1-d1d7c",
+  //   storageBucket: "",
+  //   messagingSenderId: "634559623742",
+  //   appId: "1:634559623742:web:882b27c70b1247c2"
+  // };
+  // firebase.initializeApp(firebaseConfig);
+  // firebase.database().ref(username).set({
+  //   AnswerArray;
+  // });
+
 		var neutral = "I'm sorry I can't parse your text properly Please try typing in one of the options, shown in the welcome statement.";
 		document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(neutral) + "</div><br>";
-		userChat.push(characterBreak(user)) + "<br><br>";
-		botChat.push("I'm sorry I cannot interpret your input properly.<br> Please try typing in one of the options, shown in the welcome statement. <br>");
 	}
 
+ 
+
+
    gotoBottom("chat");
+
 } 
