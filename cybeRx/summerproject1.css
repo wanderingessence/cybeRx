@@ -301,6 +301,25 @@ font-family: 'Montserrat Alternates', sans-serif;
 font-family: 'Montserrat Alternates', sans-serif;
 }
 
+.description3{
+   background-color: orange ;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: 'Montserrat', sans-serif;
+font-family: 'Montserrat Alternates', sans-serif;
+}
+
+
+
+
 /*the container must be positioned relative:*/
 .autocomplete {
   position: relative;

@@ -189,6 +189,17 @@ function diCey2(a){
 	alert(bioArray2[a]);
 }
 
+ function saytheSymptom(){
+  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">"+ document.getElementById("userBox2").value+  "</div></div>"  + "<br><br>";
+  queue.push({"Symptom" : document.getElementById("userBox2").value});
+  console.log(queue);
+ }
+
+ function makeNext(a, b){
+  a = false;
+  b = true;
+ }
+
 function characterBreak(str){
 	var final = "";
 	var char = 0;
@@ -246,6 +257,8 @@ var query = "";
  var want5 = false;
  var want6 = false;
  var want7 = false;
+ var want8 = false;
+ var want9 = false;
 
 
 
@@ -519,25 +532,59 @@ function talk() {
   want5= false;
   want6 = true;
 } else if (want6 == true){
-  //push the gender to the queue 
+  //push the weight to the queue 
   queue.push({"Weight": user});
   console.log(queue);
-  var question = "What is your symptom?";
+  var question = "What are your symptoms?<br>Type anything in the lower box when finished.";
   var symString = "";
+
+ var newButton =  "<br><br><button class = \"description2\" onclick = saytheSymptom()"   +  "> Submit </button>";
+var newButton2 = "<br><br><button class = \"description3\" onclick = makeNext(want6,want7)"   +  "> Done </button>";
+
 
 var textBoxAdd = "<div class = \"response2\"><input id=\"userBox2\" type=\"text\" list=\"theDataList2\" placeholder = \"What seems to be bothering you?\" >";
 
+  
   var dataList = "<datalist id = \"theDataList2\"></datalist>"
 
-  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + question + parseBreak(question) + "<br><br>" + textBoxAdd + dataList + "</div></div>"  + "<br><br>";
-  
+  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + question + parseBreak(question) + "<br><br>" + textBoxAdd + dataList + newButton + newButton2 +  "</div></div>"  + "<br><br><br><br>";
+
+
 
    for(var i = 0; i < symptomy.length; i++){
       document.getElementById("theDataList2").innerHTML += "<option value =\"" + symptomy[i].Name + "\">";
     }
 
+
+
   want6= false;
   want7 = true;
+} else if (want7 == true){
+  var question = "How long have you been experiencing these symptoms?";
+  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + question + parseBreak(question) + "</div>"  + "<br><br>";
+  want7= false;
+  want8 = true;
+} else if (want8 == true){
+  var question = "How would you rate your pain?<br>Type anything in the box when you are finished.";
+
+var myvar = '<div class = "box"><center><div id = "value"></div></center>'+
+' </div>'+
+' <div class = "containery">'+
+'   <input type="range" min = "0" max = "10" value = "5" class = "slider" id = "slider">'+
+' </div>'+
+' <script type="text/javascript">'+
+'   var slider = document.getElementById("slider");'+
+'   var val = document.getElementById("value");'+
+'   val.innerHTML = slider.value;'+
+'   slider.oninput = function(){'+
+'     val.innerHTML = this.value;'+
+'   }'+
+' </script>';
+  
+
+  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + question + parseBreak(question) + myvar + "</div>"  + "<br><br>";
+  want8= false;
+  want9 = true;
 }
    
    
