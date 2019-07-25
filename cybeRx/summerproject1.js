@@ -163,6 +163,7 @@ var testAnswers = [];
 var sixthSense = false;
 var response = "";
 var painValue = 0;
+var painArray = [];
 var senorita = "wow my name is mary and i like pie particularly wolfs pie and shepards pie and since this thing is so damn annoying it demands a boatload of text to be happy.";
 function getLocation(x) {
 	if (navigator.geolocation) {
@@ -190,8 +191,9 @@ function diCey2(a){
 }
 
  function saytheSymptom(){
-  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">"+ document.getElementById("userBox2").value+  "</div></div>"  + "<br><br>";
-  queue.push({"Symptom" : document.getElementById("userBox2").value});
+  var valuey = document.getElementById("userBox2").value;
+  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">"+valuey+  "</div></div>"  + "<br><br>";
+  queue.push({"Symptom" : valuey});
   console.log(queue);
  }
 
@@ -259,13 +261,22 @@ var query = "";
  var want7 = false;
  var want8 = false;
  var want9 = false;
-
+ var want10 = false;
+ var want11 = false;
 
 
 getLocation(document.getElementById("userBox"));
 function gotoBottom(id){
    var element = document.getElementById(id);
    element.scrollTop = element.scrollHeight + 5000;
+}
+
+function myFunction() {
+   var val = document.getElementById("slider").value; //gets the oninput value
+  //displays this value to the html page
+   //console.log(val);
+   painArray.push(document.getElementById("slider").value);
+   //console.log(queue);
 }
 function talk() {
 
@@ -539,7 +550,6 @@ function talk() {
   var symString = "";
 
  var newButton =  "<br><br><button class = \"description2\" onclick = saytheSymptom()"   +  "> Submit </button>";
-var newButton2 = "<br><br><button class = \"description3\" onclick = makeNext(want6,want7)"   +  "> Done </button>";
 
 
 var textBoxAdd = "<div class = \"response2\"><input id=\"userBox2\" type=\"text\" list=\"theDataList2\" placeholder = \"What seems to be bothering you?\" >";
@@ -547,7 +557,7 @@ var textBoxAdd = "<div class = \"response2\"><input id=\"userBox2\" type=\"text\
   
   var dataList = "<datalist id = \"theDataList2\"></datalist>"
 
-  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + question + parseBreak(question) + "<br><br>" + textBoxAdd + dataList + newButton + newButton2 +  "</div></div>"  + "<br><br><br><br>";
+  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + question + parseBreak(question) + "<br><br>" + textBoxAdd + dataList + newButton +  "</div></div>"  + "<br><br><br><br>";
 
 
 
@@ -570,7 +580,7 @@ var textBoxAdd = "<div class = \"response2\"><input id=\"userBox2\" type=\"text\
 var myvar = '<div class = "box"><center><div id = "value"></div></center>'+
 ' </div>'+
 ' <div class = "containery">'+
-'   <input type="range" min = "0" max = "10" value = "5" class = "slider" id = "slider">'+
+'   <input type="range" min = "0" max = "10" value = "5" class = "slider" id = "slider" oninput="myFunction()">'+
 ' </div>'+
 ' <script type="text/javascript">'+
 '   var slider = document.getElementById("slider");'+
@@ -580,11 +590,32 @@ var myvar = '<div class = "box"><center><div id = "value"></div></center>'+
 '     val.innerHTML = this.value;'+
 '   }'+
 ' </script>';
+
+
   
 
   document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + question + parseBreak(question) + myvar + "</div>"  + "<br><br>";
   want8= false;
   want9 = true;
+} else if(want9 == true){
+  //figure out how to extract the pain-level value here
+   queue.push({"Pain": painArray.pop()});
+ var question = "Do you have any family history of illnesses? If so, type the relation and the condition and age of onset. Example: <i>Aunt Breast Cancer, 35</i>";
+   document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + question + parseBreak(question) + "</div>"  + "<br><br>";
+   want9 = false;
+   want10 = true; 
+} else if(want10 == true){
+  //store the family history here
+   queue.push({"Family-History": user});
+  console.log(queue);
+  var question = "If there is any other important information to share, type it in the box below. If not, just type \'done\'";
+  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + question + parseBreak(question) + "</div>"  + "<br><br>";
+  want10 = false;
+  want11 = true;
+} else if(want11 == true){
+  var question = "Test Complete! See the Results and more options in the <i><strong>View my Stats</strong></i> section. Thank you for choosing cybeRx :)";
+   document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + question + parseBreak(question) + "</div>"  + "<br><br>";
+   want11 = false;
 }
    
    
