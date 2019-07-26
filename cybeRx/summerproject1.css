@@ -477,3 +477,9 @@ input[type=submit] {
   border-radius: 50%;
   border: 10px solid #C26868;
 }
+
+#tu{
+  color: black;
+  font-family: 'Poppins', sans-serif;
+  font-size: 50px;
+}
