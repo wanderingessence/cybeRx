@@ -26,6 +26,12 @@ li a {
   text-decoration: none;
 }
 
+
+a {
+  color: #c7cbd1;
+  text-decoration: none;
+}
+
 li a:hover:not(.active) {
    background-size: 100% 2px;
     transition: 0.25s;
@@ -482,4 +488,8 @@ input[type=submit] {
   color: black;
   font-family: 'Poppins', sans-serif;
   font-size: 50px;
+}
+
+a:hover{
+  color: blue;
 }
