@@ -443,3 +443,20 @@ input[type=submit] {
   font-family: 'Montserrat', sans-serif;
 }
 
+#aboutDiv{
+  background: url("sunset.jpg");
+}
+
+#transitioning{
+  color: white;
+}
+
+
+.footer{
+  position: fixed;
+  left: 0;
+  bottom:0;
+  width: 100%;
+  background-color: #343D46;
+  color: #C7CBD1;
+}

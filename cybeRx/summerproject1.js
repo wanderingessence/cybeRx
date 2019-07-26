@@ -367,10 +367,7 @@ function talk() {
 		
 		is2 = true;
 
-    for(var i = 0; i < symptomy.length; i++){
-      document.getElementById("theDataList").innerHTML += "<option value =\"" + symptomy[i].Name + "\">";
-    }
-
+  
 	} else if(is2 == true){
 
 
@@ -468,28 +465,6 @@ function talk() {
 
 // 		console.log("sanity check");
 			
-// 			var firebaseConfig = {
-//     apiKey: "AIzaSyBPvSqm_MaQhjpK7z0SUbn2ZbxD12MI-9k",
-//     authDomain: "summerproject1-d1d7c.firebaseapp.com",
-//     databaseURL: "https://summerproject1-d1d7c.firebaseio.com",
-//     projectId: "summerproject1-d1d7c",
-//     storageBucket: "",
-//     messagingSenderId: "634559623742",
-//     appId: "1:634559623742:web:882b27c70b1247c2"
-//   };
-//   firebase.initializeApp(firebaseConfig);
-//   var database = firebase.database();
-//   var ref = database.ref('Chat');
-//      var data = {
-//     corpus: user
-//   };
-
-//    ref.once("value")
-//     .then(function(snapshot) {
-
-//         ref.push(data);
-//         alert("Data Pushed. Congrats :D");
-// });
 
 	is2 = false;
 
@@ -520,7 +495,7 @@ function talk() {
   want3 = true;
 } else if (want3 == true){
   //push the gender to the queue 
-  queue.push({"Age": user});
+  queue.push({"Gender": user});
   console.log(queue);
   var question = "What is your ethnicity?";
   document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + question + parseBreak(question) + "</div>"  + "<br><br>";
@@ -546,7 +521,7 @@ function talk() {
   //push the weight to the queue 
   queue.push({"Weight": user});
   console.log(queue);
-  var question = "What are your symptoms?<br>Type anything in the lower box when finished.";
+  var question = "What are your symptoms?<br>Type anything in the lowest text box when finished.";
   var symString = "";
 
  var newButton =  "<br><br><button class = \"description2\" onclick = saytheSymptom()"   +  "> Submit </button>";
@@ -594,14 +569,14 @@ var myvar = '<div class = "box"><center><div id = "value"></div></center>'+
 
   
 
-  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + question + parseBreak(question) + myvar + "</div>"  + "<br><br>";
+  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + parseBreak(question) + myvar + "</div>"  + "<br><br>";
   want8= false;
   want9 = true;
 } else if(want9 == true){
   //figure out how to extract the pain-level value here
    queue.push({"Pain": painArray.pop()});
  var question = "Do you have any family history of illnesses? If so, type the relation and the condition and age of onset. Example: <i>Aunt Breast Cancer, 35</i>";
-   document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + question + parseBreak(question) + "</div>"  + "<br><br>";
+   document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + parseBreak(question) + "</div>"  + "<br><br>";
    want9 = false;
    want10 = true; 
 } else if(want10 == true){
@@ -609,12 +584,43 @@ var myvar = '<div class = "box"><center><div id = "value"></div></center>'+
    queue.push({"Family-History": user});
   console.log(queue);
   var question = "If there is any other important information to share, type it in the box below. If not, just type \'done\'";
-  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + question + parseBreak(question) + "</div>"  + "<br><br>";
+  document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question)+ parseBreak(question) + "</div>"  + "<br><br>";
   want10 = false;
   want11 = true;
 } else if(want11 == true){
+  if(user != "done"){
+   queue.push({"Other-Info": user});
+  }
+  console.log(queue);
   var question = "Test Complete! See the Results and more options in the <i><strong>View my Stats</strong></i> section. Thank you for choosing cybeRx :)";
-   document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + question + parseBreak(question) + "</div>"  + "<br><br>";
+   document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + parseBreak(question) + "</div>"  + "<br><br>";
+
+   //store stuff in this-shit-is-fire! base
+
+        var firebaseConfig = {
+    apiKey: "AIzaSyBPvSqm_MaQhjpK7z0SUbn2ZbxD12MI-9k",
+    authDomain: "summerproject1-d1d7c.firebaseapp.com",
+    databaseURL: "https://summerproject1-d1d7c.firebaseio.com",
+    projectId: "summerproject1-d1d7c",
+    storageBucket: "",
+    messagingSenderId: "634559623742",
+    appId: "1:634559623742:web:882b27c70b1247c2"
+  };
+  firebase.initializeApp(firebaseConfig);
+  var database = firebase.database();
+  var ref = database.ref(username);
+     var data = {
+    queue
+  };
+
+   ref.once("value")
+    .then(function(snapshot) {
+
+        ref.push(data);
+        alert("Data Pushed. Congrats :D");
+});
+
+
    want11 = false;
 }
    
@@ -625,20 +631,6 @@ var myvar = '<div class = "box"><center><div id = "value"></div></center>'+
 
 	else {
 
-  //   var usernameyy =  parent.document.URL.substring(parent.document.URL.indexOf('=') + 1, parent.document.URL.length);
-  //    var firebaseConfig = {
-  //   apiKey: "AIzaSyBPvSqm_MaQhjpK7z0SUbn2ZbxD12MI-9k",
-  //   authDomain: "summerproject1-d1d7c.firebaseapp.com",
-  //   databaseURL: "https://summerproject1-d1d7c.firebaseio.com",
-  //   projectId: "summerproject1-d1d7c",
-  //   storageBucket: "",
-  //   messagingSenderId: "634559623742",
-  //   appId: "1:634559623742:web:882b27c70b1247c2"
-  // };
-  // firebase.initializeApp(firebaseConfig);
-  // firebase.database().ref(username).set({
-  //   AnswerArray;
-  // });
 
 		var neutral = "I'm sorry I can't parse your text properly Please try typing in one of the options, shown in the welcome statement.";
 		document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(neutral) + "</div><br>";
