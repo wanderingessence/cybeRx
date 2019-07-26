@@ -445,6 +445,7 @@ input[type=submit] {
 
 #aboutDiv{
   background: url("sunset.jpg");
+  font-family: 'Poppins', sans-serif;
 }
 
 #transitioning{
@@ -459,4 +460,9 @@ input[type=submit] {
   width: 100%;
   background-color: #343D46;
   color: #C7CBD1;
+}
+
+
+#aboutText{
+  font-family: 'Poppins', sans-serif;
 }
