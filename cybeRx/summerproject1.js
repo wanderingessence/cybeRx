@@ -165,6 +165,21 @@ var response = "";
 var painValue = 0;
 var painArray = [];
 var senorita = "wow my name is mary and i like pie particularly wolfs pie and shepards pie and since this thing is so damn annoying it demands a boatload of text to be happy.";
+
+
+//get the year and the day
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = today.getFullYear();
+
+today = mm + '/' + dd + '/' + yyyy;
+
+function gotoStats(){
+  var username =  parent.document.URL.substring(parent.document.URL.indexOf('=') + 1, parent.document.URL.length);
+  document.location.href = "stats.html?id=" + username;
+}
+
 function getLocation(x) {
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(showPosition);
@@ -595,6 +610,8 @@ var myvar = '<div class = "box"><center><div id = "value"></div></center>'+
   var question = "Test Complete! See the Results and more options in the <i><strong>View my Stats</strong></i> section. Thank you for choosing cybeRx :)";
    document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + parseBreak(question) + "</div>"  + "<br><br>";
 
+   queue.push({"Date": today});
+   console.log(queue);
    //store stuff in this-shit-is-fire! base
 
         var firebaseConfig = {
@@ -642,3 +659,5 @@ var myvar = '<div class = "box"><center><div id = "value"></div></center>'+
    gotoBottom("chat");
 
 } 
+
+
