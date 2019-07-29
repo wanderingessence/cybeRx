@@ -15,6 +15,8 @@ var firebaseConfig = {
   var age = "";
   var gender = "";
   var ethnicity = "";
+  var height = 0;
+  var weight = 0;
   var database = firebase.database();
   var ref = database.ref(username);
   var dbCounter = 0;
@@ -22,56 +24,49 @@ var firebaseConfig = {
     snapshot.forEach(function(childSnapshot) {
       var childData = childSnapshot.val();
       console.log(childData);
+
       name = childData.queue[0].Name;
       age = Number(childData.queue[1].Age);
       if(childData.queue[2].Gender == "M"){
       	gender = "Male";
       } 
-
       if(childData.queue[2].Gender == "F"){
       	gender = "Female";
       } 
-
-
       ethnicity = childData.queue[3].Ethnicity;
-      console.log(ethnicity);
+      height = childData.queue[4].Height;
+      weight = childData.queue[5].Weight;
 
-      console.log(age);
+      var count = 6;
+      while(childData.queue[count].Symptom != null){
+      	count++;
+      }
+
+      console.log(count);
       dbCounter++;
+
+
     });
    addHTML();
 });
 
  function addHTML(){
- 	 document.getElementById("underlineName").innerHTML += "<b><u>" + name + ".</u></b><br><br>";
- 	 document.getElementById("age").innerHTML += "<b>Age: " + age + "</b><br><br>";
- 	 if(gender == "Male"){
- 	 	document.getElementById("nextID").innerHTML += "<center><div id = \"male\"><b>Gender: " + "Male" + "</b><br><br></div></center>";
- 	 }
+ 	 document.getElementById("underlineName").innerHTML += "<u>" + name + ".</u><br><br>";
+ 	 document.getElementById("shortd").innerHTML += "<b> " + age + "-year-old " + ethnicity + " " + gender +  "</b><br>";
+ 	 document.getElementById("hw").innerHTML += "<b> " + height + ",   " + weight + "lbs" + "</b><br>";
+ 	 BMICalculator();
+ } 
 
- 	 if(gender == "Female"){
- 	 	document.getElementById("nextID").innerHTML += "<center><div id = \"female\"><b>Gender: " + "Female" + "</b><br><br></div></center>";
- 	 }
-
- 	 if (ethnicity == "Asian"){
- 	 }
-
- 	 if (ethnicity == "White"){
-
- 	 } 
-
- 	 if(ethnicity == "Black"){
-
- 	 }
-
- 	 if(ethnicity == "Middle Eastern"){
-
- 	 } 
-
- 	 if(ethnicity == "Hispanic"){
- 	 	
- 	 }
+ function BMICalculator(){
+ 	var h = parseInt(height);//ft
+ 	var h1 = Number(height.substring(2,3));//in
+ 	var w = Number(weight);
+ 	var finalHeight = h * 12 + h1;
+ 	var BMI = Math.round(70300 * w / finalHeight / finalHeight)/100;
+ 	 document.getElementById("hw").innerHTML += "<br>BMI: "+ BMI + "<br><br>";
  }
+
+
 
 
 
