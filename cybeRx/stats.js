@@ -40,7 +40,13 @@ var firebaseConfig = {
  function addHTML(){
  	 document.getElementById("underlineName").innerHTML += "<b><u>" + name + ".</u></b><br><br>";
  	 document.getElementById("age").innerHTML += "<b>Age: " + age + "</b><br><br>";
- 	 document.getElementById("gender").innerHTML += "<b>Gender: " + gender + "</b><br><br>";
+ 	 if(gender == "Male"){
+ 	 	document.getElementById("nextID").innerHTML += "<center><div id = \"male\"><b>Gender: " + "Male" + "</b><br><br></div></center>";
+ 	 }
+
+ 	 if(gender == "Female"){
+ 	 	document.getElementById("nextID").innerHTML += "<center><div id = \"female\"><b>Gender: " + "Female" + "</b><br><br></div></center>";
+ 	 }
  }
 
 

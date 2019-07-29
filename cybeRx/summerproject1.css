@@ -520,3 +520,25 @@ background-color: #DBDDE6;
   border: 15px solid #8DA6CA;
 }
 
+#male{
+  font-size: 18px;
+  background-color: blue;
+  width: 15%;
+  height: 20px;
+  line-height: 20px;
+  color: white;
+  border-radius: 8px;
+  border: 15px solid blue;
+}
+
+#female{
+  font-size: 18px;
+  background-color: pink;
+  width: 15%;
+  height: 20px;
+  line-height: 20px;
+  color: white;
+  border-radius: 8px;
+  border: 15px solid pink;
+}
+
