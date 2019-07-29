@@ -531,3 +531,15 @@ background-color: #20243F;
   border: 15px solid #E2516E;
 }
 
+#symptoms li{
+  float: none;
+  list-style: none;
+}
+
+#symptoms{
+  color: white;
+  background-color: #43DD9B;
+  width: 35%;
+  border-radius: 8px;
+  border: 15px solid #43DD98;
+}

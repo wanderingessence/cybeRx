@@ -17,6 +17,7 @@ var firebaseConfig = {
   var ethnicity = "";
   var height = 0;
   var weight = 0;
+  var symptoms = [];
   var database = firebase.database();
   var ref = database.ref(username);
   var dbCounter = 0;
@@ -39,10 +40,18 @@ var firebaseConfig = {
 
       var count = 6;
       while(childData.queue[count].Symptom != null){
+      	symptoms.push(childData.queue[count].Symptom);
       	count++;
       }
 
-      console.log(count);
+
+	document.getElementById("symptoms").innerHTML += "<strong>Symptoms<br><br></strong><ul>";
+      var symptom;
+      for(symptom of symptoms){
+      	
+	document.getElementById("symptoms").innerHTML += "<li>" + symptom + "</li>";
+      }
+	document.getElementById("symptoms").innerHTML += "<ul>";
       dbCounter++;
 
 
@@ -55,6 +64,40 @@ var firebaseConfig = {
  	 document.getElementById("shortd").innerHTML += "<b> " + age + "-year-old " + ethnicity + " " + gender +  "</b><br>";
  	 document.getElementById("hw").innerHTML += "<b> " + height + ",   " + weight + "lbs" + "</b><br>";
  	 BMICalculator();
+
+ 	  let myChart = document.getElementById("myChart").getContext('2d');
+       Chart.defaults.global.defaultFontColor = 'white';
+    let massPopChart = new Chart(myChart, {
+
+      //global options
+
+      type: 'line', //bar horizontalBar, pie, line, doughnut, radar, polarArea
+      data: {
+        labels: ['Boston', 'Worchester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
+        datasets: [{
+          label: 'population',
+          data: [6,4,5,3,4,5],
+          backgroundColor: ['red', 'orange', 'yellow', 'green', 'blue', 'purple'],
+          borderWidth: 1,
+          hoverBorderWidth: 3,
+          hoverBorderColor: 'white',
+          borderColor: 'gray'
+        }]
+      },
+      options: {
+        title:{
+          display:true,
+          text: 'Pain Level',
+          fontSize: 25
+        },
+        legend:{
+          position: 'right'
+        },
+        padding:{
+          left: 50
+        }
+      }
+    });
  } 
 
  function BMICalculator(){
