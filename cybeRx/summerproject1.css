@@ -493,3 +493,30 @@ input[type=submit] {
 a:hover{
   color: blue;
 }
+
+#nextID{
+  height: 100%;
+width: 100%;
+top: 0px;
+left: 0px;
+background-color: #DBDDE6;
+}
+
+#underlineName{
+  font-size: 40px;
+  width: 25%;
+   opacity: 0.2;
+   font-color: #CCCCD5;
+}
+
+#age{
+  font-size: 18px;
+  background-color: #8DA6CA;
+  width: 15%;
+  height: 20px;
+  line-height: 20px;
+  color: white;
+  border-radius: 8px;
+  border: 15px solid #8DA6CA;
+}
+
