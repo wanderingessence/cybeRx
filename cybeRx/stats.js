@@ -14,6 +14,7 @@ var firebaseConfig = {
   var name = "";
   var age = "";
   var gender = "";
+  var ethnicity = "";
   var database = firebase.database();
   var ref = database.ref(username);
   var dbCounter = 0;
@@ -31,6 +32,10 @@ var firebaseConfig = {
       	gender = "Female";
       } 
 
+
+      ethnicity = childData.queue[3].Ethnicity;
+      console.log(ethnicity);
+
       console.log(age);
       dbCounter++;
     });
@@ -46,6 +51,25 @@ var firebaseConfig = {
 
  	 if(gender == "Female"){
  	 	document.getElementById("nextID").innerHTML += "<center><div id = \"female\"><b>Gender: " + "Female" + "</b><br><br></div></center>";
+ 	 }
+
+ 	 if (ethnicity == "Asian"){
+ 	 }
+
+ 	 if (ethnicity == "White"){
+
+ 	 } 
+
+ 	 if(ethnicity == "Black"){
+
+ 	 }
+
+ 	 if(ethnicity == "Middle Eastern"){
+
+ 	 } 
+
+ 	 if(ethnicity == "Hispanic"){
+ 	 	
  	 }
  }
 
