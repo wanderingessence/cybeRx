@@ -596,7 +596,7 @@ var myvar = '<div class = "box"><center><div id = "value"></div></center>'+
    want10 = true; 
 } else if(want10 == true){
   //store the family history here
-   queue.push({"Family-History": user});
+   queue.push({"FamilyHistory": user});
   console.log(queue);
   var question = "If there is any other important information to share, type it in the box below. If not, just type \'done\'";
   document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question)+ parseBreak(question) + "</div>"  + "<br><br>";
@@ -606,12 +606,12 @@ var myvar = '<div class = "box"><center><div id = "value"></div></center>'+
   if(user != "done"){
    queue.push({"Other-Info": user});
   }
+    queue.push({"Date": today});
   console.log(queue);
   var question = "Test Complete! See the Results and more options in the <i><strong>View my Stats</strong></i> section. Thank you for choosing cybeRx :)";
    document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(question) + parseBreak(question) + "</div>"  + "<br><br>";
 
-   queue.push({"Date": today});
-   console.log(queue);
+ 
    //store stuff in this-shit-is-fire! base
 
         var firebaseConfig = {
