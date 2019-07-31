@@ -240,13 +240,16 @@ function characterBreak(str){
 }
 function parsePhone(str){
 	var number = "";
-	for(var i = 0; i < str.length; i++){
-		if(i == 2 || i == 5){
-			number += str.charAt(i) + "-";
-		} else {
-			number += str.charAt(i);
-		}
-	}
+  if(str != undefined){
+    for(var i = 0; i < str.length; i++){
+    if(i == 2 || i == 5){
+      number += str.charAt(i) + "-";
+    } else {
+      number += str.charAt(i);
+    }
+  }
+  }
+	
 
 	return number;
 }
@@ -342,6 +345,37 @@ function talk() {
 				info += "<br><br><button class = \"description\" onclick = say()"   +  ">View Description </button>";
 				document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + info + "</div>" + parseBreak(info) +  "<br><br>";
 
+          var firebaseConfig = {
+    apiKey: "AIzaSyBPvSqm_MaQhjpK7z0SUbn2ZbxD12MI-9k",
+    authDomain: "summerproject1-d1d7c.firebaseapp.com",
+    databaseURL: "https://summerproject1-d1d7c.firebaseio.com",
+    projectId: "summerproject1-d1d7c",
+    storageBucket: "",
+    messagingSenderId: "634559623742",
+    appId: "1:634559623742:web:882b27c70b1247c2"
+  };
+  
+   firebase.initializeApp(firebaseConfig);
+
+  var database = firebase.database();
+  var ref = database.ref(username);
+     var data = {
+    "Doctor" :  "Dr." +  data.data[0].profile.first_name + " " + data.data[0].profile.last_name + ", " + data.data[0].profile.title,
+    "Bio": bio,
+    "Specialty": data.data[0].specialties[0].name,
+    "Address" : data.data[0].practices[0].visit_address.street + data.data[0].practices[0].visit_address.city + ", " + data.data[0].practices[0].visit_address.state + " " + data.data[0].practices[0].visit_address.zip,
+    "Phone": parsePhone(phoneNumber)
+
+  };
+
+   ref.once("value")
+    .then(function(snapshot) {
+
+        ref.push(data);
+        alert("Data Pushed. Congrats :D");
+});
+
+
 			});
 	} else if(type12 == true){
 		document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">Here is a list of doctors that serve in the area you searched for:</div><br>";
@@ -352,12 +386,13 @@ function talk() {
 		info = "";
 		$.getJSON("https://api.betterdoctor.com/2016-03-01/doctors?query=" + user + "&location=" + latitude + "%2C%20" + longitude + "%2C50&skip=0&limit=10&user_key=afbd778310f54f209917a0810b0f8aed",
 			function(data){
-
 				for(var i = 0; i < 3; i++){
 					info = "";
-					bio = data.data[i].profile.bio;
+          if(data.data[i].profile.bio != undefined){
+              bio = data.data[i].profile.bio;
+          }
+				
 					bioArray[i] = bio;
-					console.log(data.data[i].profile.bio);
 					info += "Dr." +  data.data[i].profile.first_name + " " + data.data[i].profile.last_name + ", " + data.data[i].profile.title + "<br>" +"<br><br>";
 					var datas = data.data[i];
 					var quote ='"';
@@ -373,7 +408,43 @@ function talk() {
 					}
 					info += "<br><br><button class = \"description\" onclick = diCey(" + i + ")"   +  ">View Description </button>";
 					document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + info + "</div>"  + "<br><br><br><br>";
+
+
+           var firebaseConfig = {
+    apiKey: "AIzaSyBPvSqm_MaQhjpK7z0SUbn2ZbxD12MI-9k",
+    authDomain: "summerproject1-d1d7c.firebaseapp.com",
+    databaseURL: "https://summerproject1-d1d7c.firebaseio.com",
+    projectId: "summerproject1-d1d7c",
+    storageBucket: "",
+    messagingSenderId: "634559623742",
+    appId: "1:634559623742:web:882b27c70b1247c2"
+  };
+  
+   firebase.initializeApp(firebaseConfig);
+
+  var database = firebase.database();
+  var ref = database.ref(username);
+     var data = {
+    "Doctor" :  "Dr." +  data.data[i].profile.first_name + " " + data.data[i].profile.last_name + ", " + data.data[i].profile.title,
+    "Bio": bio,
+    "Specialty": data.data[i].specialties[0].name,
+    "Address" : data.data[i].practices[0].visit_address.street + data.data[i].practices[0].visit_address.city + ", " + data.data[i].practices[0].visit_address.state + " " + data.data[i].practices[0].visit_address.zip,
+    "Phone": parsePhone(phoneNumber),
+    "Query": user
+
+  };
+
+   ref.once("value")
+    .then(function(snapshot) {
+
+        ref.push(data);
+        alert("Data Pushed. Congrats :D");
+});
+
 				}
+
+
+
 			});
 	} else if(user == 2){
 
@@ -415,7 +486,7 @@ function talk() {
 			}
 		}
 
-		var tokens = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImNocmlzdG9waGVyY2h1MDgxMDk4QGdtYWlsLmNvbSIsInJvbGUiOiJVc2VyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvc2lkIjoiMjcwNCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvdmVyc2lvbiI6IjEwOSIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbGltaXQiOiIxMDAiLCJodHRwOi8vZXhhbXBsZS5vcmcvY2xhaW1zL21lbWJlcnNoaXAiOiJCYXNpYyIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbGFuZ3VhZ2UiOiJlbi1nYiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvZXhwaXJhdGlvbiI6IjIwOTktMTItMzEiLCJodHRwOi8vZXhhbXBsZS5vcmcvY2xhaW1zL21lbWJlcnNoaXBzdGFydCI6IjIwMTktMDctMTAiLCJpc3MiOiJodHRwczovL2F1dGhzZXJ2aWNlLnByaWFpZC5jaCIsImF1ZCI6Imh0dHBzOi8vaGVhbHRoc2VydmljZS5wcmlhaWQuY2giLCJleHAiOjE1NjQ0NTU3MzQsIm5iZiI6MTU2NDQ0ODUzNH0.KGZ6Q_w1CxbVgRhnrxLLbmi2zJjWzqS6bVFI5sC7le4";
+		var tokens = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImNocmlzdG9waGVyY2h1MDgxMDk4QGdtYWlsLmNvbSIsInJvbGUiOiJVc2VyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvc2lkIjoiMjcwNCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvdmVyc2lvbiI6IjEwOSIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbGltaXQiOiIxMDAiLCJodHRwOi8vZXhhbXBsZS5vcmcvY2xhaW1zL21lbWJlcnNoaXAiOiJCYXNpYyIsImh0dHA6Ly9leGFtcGxlLm9yZy9jbGFpbXMvbGFuZ3VhZ2UiOiJlbi1nYiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvZXhwaXJhdGlvbiI6IjIwOTktMTItMzEiLCJodHRwOi8vZXhhbXBsZS5vcmcvY2xhaW1zL21lbWJlcnNoaXBzdGFydCI6IjIwMTktMDctMTAiLCJpc3MiOiJodHRwczovL2F1dGhzZXJ2aWNlLnByaWFpZC5jaCIsImF1ZCI6Imh0dHBzOi8vaGVhbHRoc2VydmljZS5wcmlhaWQuY2giLCJleHAiOjE1NjQ2MTk0NDMsIm5iZiI6MTU2NDYxMjI0M30.L1jFHWsfdgqte4CfxST9XfnJXihlMQc3X2_OSGSaPuc";
 
 
 		var apimedicURL = "https://healthservice.priaid.ch/diagnosis?symptoms=[" + verifyArray+ "]&gender=male&year_of_birth=82&token=" + tokens + "&format=json&language=en-gb";
@@ -430,11 +501,12 @@ function talk() {
 			function(data){
 				var infos = "Based on the following information you have typed in, you may have the following illnesses:<br><br>";
 				
-
+        var diseases = [];
 				
 				for(var i = 0; i < data.length; i++){
 					console.log(data[i].Issue.ProfName + ": Extracted from database");
 					infos += data[i].Issue.ProfName + "<br>";
+          diseases.push(data[i].Issue.ProfName);
 				}
 
 				infos += "<br>Keep note that this is not a diagnosis, see a medical professional for a more accurate opinion. ";
@@ -443,7 +515,7 @@ function talk() {
 			function(data){
 				document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + "Here are some suggested doctors based on your reported conditions: "+ "</div>"  + "<br><br>";
 
-				for(var i = 0; i < 3; i++){
+				for(var i = 0; i < data.length; i++){
 					info = "";
 					bio = data.data[i].profile.bio;
 					bioArray2[i] = bio;
@@ -463,6 +535,33 @@ function talk() {
 					info += "<br><br><button class = \"description\" onclick = diCey2(" + i + ")"   +  ">View Description </button>";
 					document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + info + parseBreak(info) + "</div>"  + "<br><br>";
 				}
+
+        var firebaseConfig = {
+    apiKey: "AIzaSyBPvSqm_MaQhjpK7z0SUbn2ZbxD12MI-9k",
+    authDomain: "summerproject1-d1d7c.firebaseapp.com",
+    databaseURL: "https://summerproject1-d1d7c.firebaseio.com",
+    projectId: "summerproject1-d1d7c",
+    storageBucket: "",
+    messagingSenderId: "634559623742",
+    appId: "1:634559623742:web:882b27c70b1247c2"
+  };
+  
+   firebase.initializeApp(firebaseConfig);
+
+  var database = firebase.database();
+  var ref = database.ref(username);
+     var data = {
+    "corpus": user,
+    "apimedic": diseases
+  };
+
+   ref.once("value")
+    .then(function(snapshot) {
+
+        ref.push(data);
+        alert("Data Pushed. Congrats :D");
+});
+
 			});
 
 

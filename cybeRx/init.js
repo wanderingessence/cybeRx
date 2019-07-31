@@ -103,6 +103,7 @@ firebase.auth().createUserWithEmailAndPassword(username, password).catch(functio
   var user = firebase.auth().currentUser;
 
    document.location.href = "chat.html?id=" + user.uid;
+   firebase.auth.signOut();
 });
   }
 
