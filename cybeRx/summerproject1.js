@@ -388,9 +388,7 @@ function talk() {
 			function(data){
 				for(var i = 0; i < 3; i++){
 					info = "";
-          if(data.data[i].profile.bio != undefined){
               bio = data.data[i].profile.bio;
-          }
 				
 					bioArray[i] = bio;
 					info += "Dr." +  data.data[i].profile.first_name + " " + data.data[i].profile.last_name + ", " + data.data[i].profile.title + "<br>" +"<br><br>";
@@ -409,8 +407,22 @@ function talk() {
 					info += "<br><br><button class = \"description\" onclick = diCey(" + i + ")"   +  ">View Description </button>";
 					document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + info + "</div>"  + "<br><br><br><br>";
 
+				}
 
-           var firebaseConfig = {
+
+  //          var firebaseConfig = {
+  //   apiKey: "AIzaSyBPvSqm_MaQhjpK7z0SUbn2ZbxD12MI-9k",
+  //   authDomain: "summerproject1-d1d7c.firebaseapp.com",
+  //   databaseURL: "https://summerproject1-d1d7c.firebaseio.com",
+  //   projectId: "summerproject1-d1d7c",
+  //   storageBucket: "",
+  //   messagingSenderId: "634559623742",
+  //   appId: "1:634559623742:web:882b27c70b1247c2"
+  // };
+  
+  //  firebase.initializeApp(firebaseConfig);
+
+             var firebaseConfig = {
     apiKey: "AIzaSyBPvSqm_MaQhjpK7z0SUbn2ZbxD12MI-9k",
     authDomain: "summerproject1-d1d7c.firebaseapp.com",
     databaseURL: "https://summerproject1-d1d7c.firebaseio.com",
@@ -422,27 +434,40 @@ function talk() {
   
    firebase.initializeApp(firebaseConfig);
 
-  var database = firebase.database();
+
+
+    var database = firebase.database();
   var ref = database.ref(username);
      var data = {
-    "Doctor" :  "Dr." +  data.data[i].profile.first_name + " " + data.data[i].profile.last_name + ", " + data.data[i].profile.title,
-    "Bio": bio,
-    "Specialty": data.data[i].specialties[0].name,
-    "Address" : data.data[i].practices[0].visit_address.street + data.data[i].practices[0].visit_address.city + ", " + data.data[i].practices[0].visit_address.state + " " + data.data[i].practices[0].visit_address.zip,
-    "Phone": parsePhone(phoneNumber),
-    "Query": user
-
+    "Doctor" :  "Dr." +  data.data[0].profile.first_name + " " + data.data[0].profile.last_name + ", " + data.data[0].profile.title,
+    "Bio": data.data[0].profile.bio,
+    "Specialty": data.data[0].specialties[0].name,
+    "Address" : data.data[0].practices[0].visit_address.street + " " + data.data[0].practices[0].visit_address.city + ", " + data.data[1].practices[0].visit_address.state + " " + data.data[0].practices[0].visit_address.zip,
+    "Phone": parsePhone(data.data[0].practices[0].phones[0].number),
+    "Query": user,
+    "Doctor1" :  "Dr." +  data.data[1].profile.first_name + " " + data.data[1].profile.last_name + ", " + data.data[1].profile.title,
+    "Bio1": data.data[1].profile.bio,
+    "Specialty1": data.data[1].specialties[0].name,
+    "Address1" : data.data[1].practices[0].visit_address.street + " " + data.data[1].practices[0].visit_address.city + ", " + data.data[1].practices[0].visit_address.state + " " + data.data[1].practices[0].visit_address.zip,
+    "Phone1": parsePhone(data.data[1].practices[0].phones[0].number),
+     "Doctor2" :  "Dr." +  data.data[2].profile.first_name + " " + data.data[2].profile.last_name + ", " + data.data[2].profile.title,
+    "Bio2": data.data[2].profile.bio,
+    "Specialty2": data.data[2].specialties[0].name,
+    "Address2" : data.data[2].practices[0].visit_address.street + " "  + data.data[2].practices[0].visit_address.city + ", " + data.data[2].practices[0].visit_address.state + " " + data.data[2].practices[0].visit_address.zip,
+    "Phone2": parsePhone(data.data[2].practices[0].phones[0].number),
   };
+
 
    ref.once("value")
     .then(function(snapshot) {
 
         ref.push(data);
-        alert("Data Pushed. Congrats :D");
+      
 });
 
-				}
 
+
+ 
 
 
 			});
