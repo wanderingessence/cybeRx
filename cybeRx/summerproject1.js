@@ -208,6 +208,7 @@ function diCey2(a){
  function saytheSymptom(){
   var valuey = document.getElementById("userBox2").value;
   document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">"+valuey+  "</div></div>"  + "<br><br>";
+  gotoBottom("chat");
   queue.push({"Symptom" : valuey});
   console.log(queue);
  }
@@ -593,6 +594,7 @@ function talk() {
 				
 
 				document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + characterBreak(infos) + "</div>" + parseBreak(infos) +  "<br><br>";
+        gotoBottom("chat");
 
 			});	
 		}
