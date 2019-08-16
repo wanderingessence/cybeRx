@@ -26,7 +26,7 @@
 			<div id = "botLog" class = "chatting">Hi, I'm CybeRx, your personal healthcare assistant.<br> How may I help you today?<br>Press 1 To try to find a Doctor<br>Press 2 to try to find possible diagnosis for your symptoms <br> Press 3 to take a brief health assessment.</div><br><br>
 		</div>
     </div>
-    <div class = "response"><input id="userBox" type="text" list="theDataList" onkeydown="if (event.keyCode == 13) {talk()}"></div>
+    <div class = "response"><input id="userBox" type="text" method = "POST" list="theDataList" onkeydown="if (event.keyCode == 13) {talk()}"></div>
     <datalist id = "theDataList"></datalist>
 	</div>
 </div>

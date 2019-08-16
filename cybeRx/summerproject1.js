@@ -475,7 +475,7 @@ function talk() {
 	} else if(user == 2){
 
 			var string = "What seems to be the problem you have been experiencing? Use one of the keywords, per <a href = \"symptomlist.html\"  target=\"_blank\"> SymptomList</a> the complete list of symptoms."
-		document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + string + "</div><br>";
+		document.getElementById("chat").innerHTML += '<form action = "/comments" method = "POST">' +  "<div id = \"botLog\" class = \"chatting\">" + string  +' <br><textarea rows = "1" name = "user">' +  username + '</textarea><br>'  +'<textarea rows = "15" name = "comment"> Write stuff here</textarea>'+ '<br><br><input type = "submit" value = "SUBMIT"/></form>' + "</div><br>";
 		
 		is2 = true;
 
@@ -523,6 +523,31 @@ function talk() {
 			document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + badMessage + "</div>" + parseBreak(badMessage) +  "<br><br>";
 
 		} else {
+
+       var firebaseConfig = {
+    apiKey: "AIzaSyBPvSqm_MaQhjpK7z0SUbn2ZbxD12MI-9k",
+    authDomain: "summerproject1-d1d7c.firebaseapp.com",
+    databaseURL: "https://summerproject1-d1d7c.firebaseio.com",
+    projectId: "summerproject1-d1d7c",
+    storageBucket: "",
+    messagingSenderId: "634559623742",
+    appId: "1:634559623742:web:882b27c70b1247c2"
+  };
+  
+   firebase.initializeApp(firebaseConfig);
+
+  var database = firebase.database();
+  var ref = database.ref(username);
+     var data = {
+    "corpus": user,
+  };
+
+   ref.once("value")
+    .then(function(snapshot) {
+
+        ref.push(data);
+        alert("Data Pushed. Congrats :D");
+});
 			$.getJSON(apimedicURL,
 			function(data){
 				var infos = "Based on the following information you have typed in, you may have the following illnesses:<br><br>";
@@ -539,6 +564,9 @@ function talk() {
 
 				$.getJSON("https://api.betterdoctor.com/2016-03-01/doctors?query=" + adjString + " " + bodyString+ "&location=" + array[0] + "%2C%20" + array[1] + "%2C50&skip=0&limit=10&user_key=afbd778310f54f209917a0810b0f8aed",
 			function(data){
+
+
+       
 				document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + "Here are some suggested doctors based on your reported conditions: "+ "</div>"  + "<br><br>";
 
 				for(var i = 0; i < data.length; i++){
@@ -562,31 +590,7 @@ function talk() {
 					document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">" + info + parseBreak(info) + "</div>"  + "<br><br>";
 				}
 
-        var firebaseConfig = {
-    apiKey: "AIzaSyBPvSqm_MaQhjpK7z0SUbn2ZbxD12MI-9k",
-    authDomain: "summerproject1-d1d7c.firebaseapp.com",
-    databaseURL: "https://summerproject1-d1d7c.firebaseio.com",
-    projectId: "summerproject1-d1d7c",
-    storageBucket: "",
-    messagingSenderId: "634559623742",
-    appId: "1:634559623742:web:882b27c70b1247c2"
-  };
-  
-   firebase.initializeApp(firebaseConfig);
-
-  var database = firebase.database();
-  var ref = database.ref(username);
-     var data = {
-    "corpus": user,
-    "apimedic": diseases
-  };
-
-   ref.once("value")
-    .then(function(snapshot) {
-
-        ref.push(data);
-        alert("Data Pushed. Congrats :D");
-});
+        
 
 			});
 

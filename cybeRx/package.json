@@ -1,0 +1,22 @@
+{
+  "name": "cyberx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "nodeRequest.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "firebase-admin": "^8.3.0",
+    "getmac": "^1.4.6",
+    "ip": "^1.1.5",
+    "nodemon": "^1.19.1",
+    "request": "^2.88.0",
+    "sqlite3": "^4.0.9"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
