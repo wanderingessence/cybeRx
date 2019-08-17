@@ -205,6 +205,15 @@ function diCey2(a){
 	alert(bioArray2[a]);
 }
 
+function getComments(){
+  $.get("/comments", function(data){
+    for(var i = 0; i < data.length; i++){
+      console.log("ok");
+      console.log(data[i]);
+    }
+  });
+}
+
  function saytheSymptom(){
   var valuey = document.getElementById("userBox2").value;
   document.getElementById("chat").innerHTML += "<div id = \"botLog\" class = \"chatting\">"+valuey+  "</div></div>"  + "<br><br>";
@@ -473,6 +482,7 @@ function talk() {
 
 			});
 	} else if(user == 2){
+    getComments();
 
 			var string = "What seems to be the problem you have been experiencing? Use one of the keywords, per <a href = \"symptomlist.html\"  target=\"_blank\"> SymptomList</a> the complete list of symptoms."
 		document.getElementById("chat").innerHTML += '<form action = "/comments" method = "POST">' +  "<div id = \"botLog\" class = \"chatting\">" + string  +' <br><textarea rows = "1" name = "user">' +  username + '</textarea><br>'  +'<textarea rows = "15" name = "comment"> Write stuff here</textarea>'+ '<br><br><input type = "submit" value = "SUBMIT"/></form>' + "</div><br>";
