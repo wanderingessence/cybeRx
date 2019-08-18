@@ -6,6 +6,8 @@ var express = require('express');
 var sqlite3 = require('sqlite3');
 var bodyParser = require('body-parser');
 var ip = require("ip");
+var admin = require('firebase-admin');
+var serviceAccount = require('./summerproject1-d1d7c-firebase-adminsdk-nauuz-2cb974ca66.json');
 var address = ip.address();
 var db = new sqlite3.Database('comments.db');
 var app = express();
@@ -89,6 +91,23 @@ function callback2(error, response, body) {
             }
             
         }
+
+        admin.initializeApp({credential: admin.credential.cert(serviceAccount), databaseURL: "https://summerproject1-d1d7c.firebaseio.com"});
+        const patientDB = admin.database();
+        var ref = patientDB.ref(request.body.user);
+
+          var data = {
+            "id": request.body.user,
+             "complaint": request.body.comment,
+             "diseases": diseases
+         };
+
+   ref.once("value")
+    .then(function(snapshot) {
+
+        ref.push(data);
+        console.log(":D:D:D:D:D:D:D:D:D:D:D:D");
+});
          db.run('INSERT INTO langas(name, text, diagnostics) VALUES (?, ?, ?)', [request.body.user, request.body.comment, diseases], function(err, rows){
         
         if(err){
