@@ -82,7 +82,12 @@ function callback2(error, response, body) {
         var json2 = JSON.parse(body);
         console.log("condition length is " + json2.conditions.length);
         for(var k = 0; k < json2.conditions.length; k++){
-            diseases += " " + json2.conditions[k].name;
+            if(k != json2.conditions.length - 1){
+                diseases += json2.conditions[k].name + "(" +  json2.conditions[k].probability + "), ";
+            } else {
+                diseases += " and " + json2.conditions[k].name + "(" +  json2.conditions[k].probability + ").";
+            }
+            
         }
          db.run('INSERT INTO langas(name, text, diagnostics) VALUES (?, ?, ?)', [request.body.user, request.body.comment, diseases], function(err, rows){
         
