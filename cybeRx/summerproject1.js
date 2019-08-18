@@ -166,6 +166,10 @@ var painValue = 0;
 var painArray = [];
 var senorita = "wow my name is mary and i like pie particularly wolfs pie and shepards pie and since this thing is so damn annoying it demands a boatload of text to be happy.";
 
+$("#form1").submit(function(e) {
+    e.preventDefault();
+});
+
 
 //get the year and the day
 var today = new Date();
@@ -485,7 +489,7 @@ function talk() {
     //getComments();
 
 			var string = "What seems to be the problem you have been experiencing? Use one of the keywords, per <a href = \"symptomlist.html\"  target=\"_blank\"> SymptomList</a> the complete list of symptoms."
-		document.getElementById("chat").innerHTML += '<form action = "/comments" method = "POST">' +  "<div id = \"botLog\" class = \"chatting\">" + string  +' <br><textarea rows = "1" name = "user">' +  username + '</textarea><br>'  +'<textarea rows = "15" name = "comment"> Write stuff here</textarea>'+ '<br><br><input type = "submit" value = "SUBMIT"/></form>' + "</div><br>";
+		document.getElementById("chat").innerHTML += '<form action = "/comments" method = "POST" id = "form1" >' +  "<div id = \"botLog\" class = \"chatting\">" + string  +' <br><textarea rows = "1" name = "user">' +  username + '</textarea><br>'  +'<textarea rows = "15" name = "comment"> Write stuff here</textarea>'+ '<br><br><input type = "submit" value = "SUBMIT"/></form>' + "</div><br>";
 		
 		is2 = true;
 
