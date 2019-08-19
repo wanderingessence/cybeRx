@@ -42,6 +42,9 @@ var firebaseConfig = {
   var pain = [];
   var painColor = [];
   var database = firebase.database();
+  var complaints = [];
+  var diagnostics = [];
+  var BMI;
   var ref = database.ref(username);
   var dbCounter = 0;
  ref.on('value', function(snapshot) {
@@ -75,6 +78,10 @@ var firebaseConfig = {
       console.log(fhistory);
       }
       
+      if(childData.complaint != undefined){
+          complaints.push(childData.complaint);
+          diagnostics.push(childData.diseases);
+      }
 
 	
       dbCounter++;
@@ -170,6 +177,75 @@ doc.setFont('courier');
 doc.setFontType('normal');
 doc.setFontSize(30);
 doc.text(83, 220, name);
+console.log(complaints);
+console.log(diagnostics);
+doc.addPage();
+doc.setFontSize(15);
+doc.text(20,20, "Name:" + name);
+doc.text(20,30, "Gender:" + gender);
+doc.text(20,40, "Ethnicity:" + ethnicity);
+doc.text(20,50, "Height:" + height);
+doc.text(20,60, "Weight:" + weight + " (BMI: " + BMI + ")");
+doc.text(20,70, "Issues:");
+doc.setFontSize(8);
+var height1 = 80;
+var text = "";
+for(var i = 0; i < complaints.length; i++){
+    var complaintsText = complaints[i];
+    text = "";
+    var position = 0;
+
+ for(var j = 0; j < complaintsText.length; j++){
+    text = text + complaintsText.charAt(j);
+    if(complaintsText.charAt(j) == " ") {
+      if(position > 90){
+        console.log("the text is " + text + position);
+        position = 0; 
+        doc.text(20, height1, text);
+        text = "";
+        height1 += 5;
+      }
+    }
+    position++;
+ }
+
+ height1 += 5;
+ doc.text(20, height1, "");
+}
+
+doc.addPage();
+
+var height2 = 45;
+doc.setFontSize(15);
+doc.text(20, 20, "Possible Diagnoses");
+doc.text(20, 30, "(This is not official - show this to your physician)");
+doc.setFontSize(8);
+
+for(var i = 0; i < diagnostics.length; i++){
+    var diagnosticsText = diagnostics[i];
+    text = "";
+    var position = 0;
+
+ for(var j = 0; j < diagnosticsText.length; j++){
+    text = text + diagnosticsText.charAt(j);
+    if(diagnosticsText.charAt(j) == " ") {
+      if(position > 90){
+        console.log("the text is " + text + position);
+        position = 0; 
+        doc.text(20, height2, text);
+        text = "";
+        height2 += 5;
+      }
+    }
+    position++;
+ }
+
+ height2 += 5;
+ doc.text(20, height2, "");
+}
+
+
+
 doc.save('a4.pdf');
 
 }
@@ -180,9 +256,10 @@ doc.save('a4.pdf');
  	var h1 = Number(height.substring(2,3));//in
  	var w = Number(weight);
  	var finalHeight = h * 12 + h1;
- 	var BMI = Math.round(70300 * w / finalHeight / finalHeight)/100;
+ 	BMI = Math.round(70300 * w / finalHeight / finalHeight)/100;
  	 document.getElementById("hw").innerHTML += "<br>BMI: "+ BMI + "<br><br>";
  }
+
 
 
 function getColor(number){

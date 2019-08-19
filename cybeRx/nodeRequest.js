@@ -92,7 +92,10 @@ function callback2(error, response, body) {
             
         }
 
-        admin.initializeApp({credential: admin.credential.cert(serviceAccount), databaseURL: "https://summerproject1-d1d7c.firebaseio.com"});
+        if(!admin.apps.length){
+                    admin.initializeApp({credential: admin.credential.cert(serviceAccount), databaseURL: "https://summerproject1-d1d7c.firebaseio.com"});
+        }
+
         const patientDB = admin.database();
         var ref = patientDB.ref(request.body.user);
 
