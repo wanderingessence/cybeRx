@@ -19,6 +19,10 @@ function gotoStats(){
   document.location.href = "stats.html?id=" + username;
 }
 
+function gotoChat(){
+   document.location.href = "chat.html?id=" + username;
+}
+
 
 var firebaseConfig = {
     apiKey: "AIzaSyBPvSqm_MaQhjpK7z0SUbn2ZbxD12MI-9k",

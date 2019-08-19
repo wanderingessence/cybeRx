@@ -555,3 +555,23 @@ background-color: #20243F;
   border-radius: 8px;
   border: 15px solid #00736A;
 }
+
+
+.fiddleButton{
+  position: relative;
+    left: 40%;
+    height: 65px;
+    bottom: 215px;
+    width: 20%;
+    background-color: #2980b9;
+    border-radius: 12px;
+    border: none;
+    color:white;
+    font-family: 'Montserrat', sans-serif;
+font-family: 'Montserrat Alternates', sans-serif;
+font-size: 22px;
+}
+
+.fiddleButton:hover{
+ background-color:rgb(240,128,128);
+}
