@@ -1,5 +1,3 @@
-var os = require( 'os' );
-const interfaces = os.networkInterfaces();
 const addresses = [];
 var getMacAddress;
 var express = require('express');

@@ -44,7 +44,12 @@ var firebaseConfig = {
   var database = firebase.database();
   var complaints = [];
   var diagnostics = [];
+  var doctors=[];
+  var doctorAddress = [];
+  var doctorDescription = [];
+  var phone = [];
   var BMI;
+  var query;
   var ref = database.ref(username);
   var dbCounter = 0;
  ref.on('value', function(snapshot) {
@@ -81,6 +86,32 @@ var firebaseConfig = {
       if(childData.complaint != undefined){
           complaints.push(childData.complaint);
           diagnostics.push(childData.diseases);
+      }
+
+      if(childData.Query != undefined){
+          query = childData.query;
+          if(childData.Doctor != undefined){
+            doctors.push(childData.Doctor);
+            doctorAddress.push(childData.Address);
+            doctorDescription.push(childData.Specialty);
+            phone.push(childData.Phone);
+          }
+
+          if(childData.Doctor1 != undefined){
+            doctors.push(childData.Doctor1);
+            doctorAddress.push(childData.Address1);
+            doctorDescription.push(childData.Specialty1);
+            phone.push(childData.Phone1);
+          }
+
+
+          if(childData.Doctor2 != undefined){
+            doctors.push(childData.Doctor2);
+            doctorAddress.push(childData.Address2);
+            doctorDescription.push(childData.Specialty2);
+            phone.push(childData.Phone2);
+          }
+
       }
 
 	
@@ -254,12 +285,67 @@ for(var i = 0; i < symptoms.length; i++){
   height3 += 5;
 }
 doc.setFontSize(15);
+height3 += 40;
 doc.text(20, height3, "Family History");
 height3 += 10;
+doc.setFontSize(8);
 doc.text(20, height3, fhistory);
+
+text = "";
+
+var fposition = 0;
+ for(var k = 0; k < fhistory.length; k++){
+    text = text + fhistory.charAt(j);
+    if(diagnosticsText.charAt(j) == " ") {
+      if(fposition > 90){
+        console.log("the text is " + text + fposition);
+        fposition = 0; 
+        doc.text(20, height3, text);
+        text = "";
+        height3 += 5;
+      }
+    }
+    fposition++;
+ }
+
+doc.addPage();
+ var canvas = document.querySelector('#myChart');
+ var canvasImg = canvas.toDataURL("image/jpeg", 1.0);
+ //creates PDF from img
+  doc.setFontSize(20);
+  doc.text(15, 15, "Pain Level");
+  doc.addImage(canvasImg, 'JPEG', 30, 60, 154, 82 );
+  doc.addPage();
+
+
+  doc.text(20,15,"Doctors Searched");
+  doc.setFontSize(8);
+  var height4 = 30;
+
+  for(var l = 0; l<doctors.length; l++){
+    doc.text(20, height4, doctors[l]);
+
+    height4 += 5;
+    doc.text(20, height4, doctorAddress[l]);
+    height4 += 5;
+    doc.text(20, height4, doctorDescription[l]);
+    height4 += 5;
+    doc.text(20, height4, phone[i]);
+
+    height4 += 25;
+
+  }
+
 
 
 doc.save('a4.pdf');
+
+
+ 
+  //creates image
+  
+  
+  
 
 }
 
