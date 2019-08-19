@@ -41,18 +41,19 @@ var errorPresent = false;
  firebase.auth().signInWithEmailAndPassword(username, password).catch(function(error) {
           // Handle Errors here.
           if(error){
-            alert("signup error");
+            alert(error);
             errorPresent = true;
           } 
              
-
-         
           // [END_EXCLUDE]
         });
 
-      var user = firebase.auth().currentUser;
+  if(!errorPresent){
+    var user = firebase.auth().currentUser;
+             document.location.href = "chat.html?id=" + user.uid;
+             firebase.auth().signOut();
+  }
 
-   document.location.href = "chat.html?id=" + user.uid;
         
 
   }
@@ -98,12 +99,16 @@ firebase.auth().createUserWithEmailAndPassword(username, password).catch(functio
   var errorCode = error.code;
   var errorMessage = error.message;
   if(error){
+    alert(error);
     console.log(errorCode + " " + errorMessage);
-  }
-  var user = firebase.auth().currentUser;
+  } else {
+     var user2 = firebase.auth().currentUser;
 
-   document.location.href = "chat.html?id=" + user.uid;
+   document.location.href = "chat.html?id=" + user2.uid;
    firebase.auth.signOut();
+
+  }
+ 
 });
   }
 

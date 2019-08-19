@@ -247,9 +247,16 @@ for(var i = 0; i < diagnostics.length; i++){
 doc.addPage();
 doc.setFontSize(15);
 doc.text(20,20,"List of Symptoms");
-var height3 = 45;
+var height3 = 30;
 doc.setFontSize(8);
-
+for(var i = 0; i < symptoms.length; i++){
+  doc.text(20, height3, symptoms[i]);
+  height3 += 5;
+}
+doc.setFontSize(15);
+doc.text(20, height3, "Family History");
+height3 += 10;
+doc.text(20, height3, fhistory);
 
 
 doc.save('a4.pdf');
