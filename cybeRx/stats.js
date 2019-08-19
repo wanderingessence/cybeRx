@@ -244,6 +244,12 @@ for(var i = 0; i < diagnostics.length; i++){
  doc.text(20, height2, "");
 }
 
+doc.addPage();
+doc.setFontSize(15);
+doc.text(20,20,"List of Symptoms");
+var height3 = 45;
+doc.setFontSize(8);
+
 
 
 doc.save('a4.pdf');
